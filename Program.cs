@@ -9,7 +9,14 @@ namespace NamesControl
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Here will run NamesControl application.");
+            if (mauiApp)
+            {
+                Console.WriteLine("The winndow GUI is not implemented yet.");
+            }
+            else
+            {
+                consoleGui.TerminalRun.Run();
+            }
         }
     }
 }

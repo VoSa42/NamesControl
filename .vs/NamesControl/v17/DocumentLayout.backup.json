@@ -1,12 +1,57 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F6AA59BF-22D7-4531-8123-09D362C398E4}|NamesControl.csproj|c:\\users\\admin\\documents\\prace\\eprin\\pripadovka\\namescontrol\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6AA59BF-22D7-4531-8123-09D362C398E4}|NamesControl.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6AA59BF-22D7-4531-8123-09D362C398E4}|NamesControl.csproj|c:\\users\\admin\\documents\\prace\\eprin\\pripadovka\\namescontrol\\consolegui\\terminalrun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6AA59BF-22D7-4531-8123-09D362C398E4}|NamesControl.csproj|solutionrelative:consolegui\\terminalrun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TerminalRun.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\consoleGui\\TerminalRun.cs",
+              "RelativeDocumentMoniker": "consoleGui\\TerminalRun.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\consoleGui\\TerminalRun.cs",
+              "RelativeToolTip": "consoleGui\\TerminalRun.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T13:55:36.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T13:43:02.035Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
