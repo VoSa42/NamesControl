@@ -53,6 +53,7 @@ namespace NamesControl.consoleGui
         {
             return 1;
         }
+
         private static int IncorrectInputHandler()
         {
             Console.WriteLine("Unknown input");
