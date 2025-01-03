@@ -6,7 +6,7 @@ namespace NamesControlServer
     {
         static void Main(string[] args)
         {
-            ServerCommandHandler.TerminalRun.Run();
+            ServerBackend.RunServer.Run();
         }
     }
 }
