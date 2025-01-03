@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NamesControl.consoleGui
+namespace NamesControlServer.ServerCommandHandler
 {
     internal delegate int CommandHandler();
 
