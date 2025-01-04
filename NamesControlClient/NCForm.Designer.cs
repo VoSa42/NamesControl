@@ -1,6 +1,6 @@
 ﻿namespace NamesControlClient
 {
-    partial class Form1
+    partial class NCForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            SenMessage = new Button();
+            SuspendLayout();
+            // 
+            // SenMessage
+            // 
+            SenMessage.Location = new Point(203, 127);
+            SenMessage.Name = "SenMessage";
+            SenMessage.Size = new Size(124, 29);
+            SenMessage.TabIndex = 0;
+            SenMessage.Text = "Send Message";
+            SenMessage.UseVisualStyleBackColor = true;
+            SenMessage.Click += SenMessage_Click;
+            // 
+            // NCForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(SenMessage);
+            Name = "NCForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Names Control";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button SenMessage;
     }
 }

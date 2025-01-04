@@ -20,19 +20,20 @@ namespace NamesControlServer.ServerBackend
             listener.Start();
 
             // Set buffer of static defined size to storing recieved message
-            byte[] buffer = new byte[0];
-
-            // Connection to client, who send server a request (message)
-            var sender = listener.AcceptTcpClient();
+            byte[] buffer = new byte[128];
 
             while (true)
             {
+                // Connection to client, who send server a request (message)
+                var sender = listener.AcceptTcpClient();
+
                 // Reads the byte stream from sender and store them into buffer
-                sender.GetStream().ReadExactly(buffer);
+                sender.GetStream().Read(buffer);
 
                 string command = PacketManager.UnwrapCommand(buffer);
+                Console.WriteLine(command);
                 string answer = CommandHandler.CommandExecutor(command);
-                Console.WriteLine(answer);
+                //Console.WriteLine(answer);
             }
         }
 
