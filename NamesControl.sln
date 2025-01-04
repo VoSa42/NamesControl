@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NamesControlServer", "Names
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NamesControlClient", "NamesControlClient\NamesControlClient.csproj", "{610A83EE-4EAA-45B3-91F2-87A6529BBD84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NamesControlLib", "PacketManager\NamesControlLib.csproj", "{8728A93B-D65A-460E-8547-58BB61CF718B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{610A83EE-4EAA-45B3-91F2-87A6529BBD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{610A83EE-4EAA-45B3-91F2-87A6529BBD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{610A83EE-4EAA-45B3-91F2-87A6529BBD84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8728A93B-D65A-460E-8547-58BB61CF718B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8728A93B-D65A-460E-8547-58BB61CF718B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8728A93B-D65A-460E-8547-58BB61CF718B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8728A93B-D65A-460E-8547-58BB61CF718B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
