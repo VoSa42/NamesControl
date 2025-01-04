@@ -23,17 +23,31 @@ namespace NamesControlServer.ServerBackend
             // Connection to client, who send server a request (message)
             var sender = listener.AcceptTcpClient();
 
-            // Reads the byte stream from sender and store them into buffer
-            sender.GetStream().ReadExactly(buffer, 0, ProgramServer.packetSize);
-
-
             while (true)
             {
-                string command = "Dummy";
+                // Reads the byte stream from sender and store them into buffer
+                sender.GetStream().ReadExactly(buffer, 0, ProgramServer.packetSize);
+
+                string command = ConvertMessageToCommand(buffer);
                 string answer = CommandHandler.CommandExecutor(command);
                 Console.WriteLine(answer);
-                break;
             }
+        }
+
+
+        public static string ConvertMessageToCommand(byte[] byteBuffer)
+        {
+            string message = System.Text.Encoding.Unicode.GetString(byteBuffer);
+            string command = "";
+
+            foreach (var readChar in message)
+            {
+                if (readChar != '\0')
+                {
+                    command += readChar;
+                }
+            }
+            return command;
         }
     }
 }
