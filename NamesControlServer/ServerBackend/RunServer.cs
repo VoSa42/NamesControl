@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
+using NamesControlLib;
+
 namespace NamesControlServer.ServerBackend
 {
     internal static class RunServer
@@ -28,14 +30,14 @@ namespace NamesControlServer.ServerBackend
                 // Reads the byte stream from sender and store them into buffer
                 sender.GetStream().ReadExactly(buffer);
 
-                string command = ConvertMessageToCommand(buffer);
+                string command = PacketManager.UnwrapCommand(buffer);
                 string answer = CommandHandler.CommandExecutor(command);
                 Console.WriteLine(answer);
             }
         }
 
 
-        public static string ConvertMessageToCommand(byte[] byteBuffer)
+        /*public static string ConvertMessageToCommand(byte[] byteBuffer)
         {
             string message = System.Text.Encoding.Unicode.GetString(byteBuffer);
             string command = "";
@@ -48,6 +50,6 @@ namespace NamesControlServer.ServerBackend
                 }
             }
             return command;
-        }
+        }*/
     }
 }

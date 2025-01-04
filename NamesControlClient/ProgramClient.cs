@@ -1,5 +1,4 @@
 namespace NamesControlClient
-
 {
     internal static class ProgramClient
     {
