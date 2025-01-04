@@ -15,12 +15,12 @@ namespace NamesControlServer.ServerBackend
         public static void Run()
         {
             // Set up and activate listener to wait and recieve message from client
-            IPEndPoint ipep = new IPEndPoint(ProgramServer.ServerIPAddress, ProgramServer.port);
+            IPEndPoint ipep = new IPEndPoint(ServerMetadata.ServerIPAddress, ServerMetadata.Port);
             TcpListener listener = new TcpListener(ipep);
             listener.Start();
 
             // Set buffer of static defined size to storing recieved message
-            byte[] buffer = new byte[128];
+            byte[] buffer = new byte[ServerMetadata.MaxPacketSize];
 
             while (true)
             {
@@ -36,21 +36,5 @@ namespace NamesControlServer.ServerBackend
                 //Console.WriteLine(answer);
             }
         }
-
-
-        /*public static string ConvertMessageToCommand(byte[] byteBuffer)
-        {
-            string message = System.Text.Encoding.Unicode.GetString(byteBuffer);
-            string command = "";
-
-            foreach (var readChar in message)
-            {
-                if (readChar != '\0')
-                {
-                    command += readChar;
-                }
-            }
-            return command;
-        }*/
     }
 }
