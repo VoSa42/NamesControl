@@ -9,9 +9,6 @@ namespace NamesControlServer
         public static int port = 1234;
         public static IPAddress ServerIPAddress = IPAddress.Loopback;
 
-        // Defines the size of one packet
-        public static int packetSize = 64 * 1024;
-
         static void Main(string[] args)
         {
             ServerBackend.RunServer.Run();

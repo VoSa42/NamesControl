@@ -18,7 +18,7 @@ namespace NamesControlServer.ServerBackend
             listener.Start();
 
             // Set buffer of static defined size to storing recieved message
-            byte[] buffer = new byte[ProgramServer.packetSize];
+            byte[] buffer = new byte[0];
 
             // Connection to client, who send server a request (message)
             var sender = listener.AcceptTcpClient();
@@ -26,7 +26,7 @@ namespace NamesControlServer.ServerBackend
             while (true)
             {
                 // Reads the byte stream from sender and store them into buffer
-                sender.GetStream().ReadExactly(buffer, 0, ProgramServer.packetSize);
+                sender.GetStream().ReadExactly(buffer);
 
                 string command = ConvertMessageToCommand(buffer);
                 string answer = CommandHandler.CommandExecutor(command);
