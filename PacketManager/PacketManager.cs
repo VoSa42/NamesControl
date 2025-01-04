@@ -1,18 +1,16 @@
-﻿using System.Text;
-
-namespace NamesControlLib
+﻿namespace NamesControlLib
 {
     public static class PacketManager
     {
         public static byte[] WrapCommand(string command)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(command);
-            return buffer;
+            // dummy code
+            return new byte[42];
         }
-        public static string UnwrapCommand(byte[] byteBuffer)
+        public static string UnwrapCommand(byte[] message)
         {
-            string command = Encoding.Unicode.GetString(byteBuffer);
-            return command;
+            // dummy code
+            return "";
         }
     }
 }
