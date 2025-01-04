@@ -1,27 +1,34 @@
 ﻿using System.Text;
+using System.Text.Json;
 
 namespace NamesControlLib
 {
     public static class PacketManager
     {
-        public static byte[] WrapCommand(string command)
+        public static byte[] StringToJson(string command)
         {
-            byte[] message = Encoding.UTF32.GetBytes(command);
+            string jsonCommand = JsonSerializer.Serialize(command);
+            byte[] message = Encoding.Unicode.GetBytes(jsonCommand);
+
             return message;
         }
-        public static string UnwrapCommand(byte[] bytesBuffer)
-        {
 
+        public static string JsonToString(byte[] bytesBuffer)
+        {
             string message = Encoding.Unicode.GetString(bytesBuffer);
-            string command = "";
+
+            string jsonCommand = "";
 
             foreach (var readChar in message)
             {
                 if (readChar != '\0')
                 {
-                    command += readChar;
+                    jsonCommand += readChar;
                 }
             }
+
+            string command = JsonSerializer.Deserialize<string>(jsonCommand);
+            
             return command;
         }
     }

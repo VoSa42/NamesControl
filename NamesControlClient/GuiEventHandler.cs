@@ -13,10 +13,10 @@ namespace NamesControlClient
     {
         public static void TestClickHandler()
         {
-            TcpClient client = new TcpClient("127.0.0.1", 1234);
+            TcpClient client = new TcpClient(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
             NetworkStream stream = client.GetStream();
 
-            byte[] message = PacketManager.WrapCommand("command");
+            byte[] message = PacketManager.StringToJson("command");
             stream.Write(message);
 
             stream.Dispose();
