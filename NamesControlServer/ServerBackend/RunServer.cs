@@ -12,9 +12,20 @@ namespace NamesControlServer.ServerBackend
     {
         public static void Run()
         {
+            // Set up and activate listener to wait and recieve message from client
             IPEndPoint ipep = new IPEndPoint(ProgramServer.ServerIPAddress, ProgramServer.port);
             TcpListener listener = new TcpListener(ipep);
             listener.Start();
+
+            // Set buffer of static defined size to storing recieved message
+            byte[] buffer = new byte[ProgramServer.packetSize];
+
+            // Connection to client, who send server a request (message)
+            var sender = listener.AcceptTcpClient();
+
+            // Reads the byte stream from sender and store them into buffer
+            sender.GetStream().ReadExactly(buffer, 0, ProgramServer.packetSize);
+
 
             while (true)
             {
