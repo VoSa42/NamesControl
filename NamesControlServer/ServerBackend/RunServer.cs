@@ -35,21 +35,5 @@ namespace NamesControlServer.ServerBackend
                 Console.WriteLine(answer);
             }
         }
-
-
-        /*public static string ConvertMessageToCommand(byte[] byteBuffer)
-        {
-            string message = System.Text.Encoding.Unicode.GetString(byteBuffer);
-            string command = "";
-
-            foreach (var readChar in message)
-            {
-                if (readChar != '\0')
-                {
-                    command += readChar;
-                }
-            }
-            return command;
-        }*/
     }
 }
