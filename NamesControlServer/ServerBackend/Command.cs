@@ -24,7 +24,13 @@
                 command = parsedCommand[0];
             }
 
-            if (parsedCommand.Length == 4)
+            if (command == "add")
+            {
+                firstName = parsedCommand[1];
+                secondName = parsedCommand[2];
+            }
+
+            if (command == "edit" || command == "remove")
             {
                 id = parsedCommand[1];
                 firstName = parsedCommand[2];
