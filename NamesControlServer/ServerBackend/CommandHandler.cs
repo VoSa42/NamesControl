@@ -6,44 +6,59 @@ using System.Threading.Tasks;
 
 namespace NamesControlServer.ServerBackend
 {
-    internal delegate string CommandHandlerFunc();
+    internal delegate string CommandHandlerFunc(Command com);
 
     internal class CommandHandler
     {
         public static string CommandExecutor(string command)
         {
+            Command parsedCom = new(command);
+
             CommandHandlerFunc comHandler = new(NullHandler);
 
-            switch (command)
+            switch (parsedCom.command)
             {
-                case null:
-                    comHandler = new(NullHandler);
-                    break;
                 case "":
                     comHandler = new(NullHandler);
                     break;
-                case "exit":
-                    comHandler = new(ExitHandler);
+                case "add":
+                    comHandler = new(AddHandler);
+                    break;
+                case "remove":
+                    comHandler = new(RemoveHandler);
+                    break;
+                case "edit":
+                    comHandler = new(EditHandler);
                     break;
                 default:
                     comHandler = new(IncorrectInputHandler);
                     break;
             }
 
-            return comHandler();
+            return comHandler(parsedCom);
         }
 
-        private static string NullHandler()
+        private static string NullHandler(Command com)
         {
             return "Null";
         }
 
-        private static string ExitHandler()
+        private static string AddHandler(Command com)
         {
-            return "Exit";
+            return "Add";
         }
 
-        private static string IncorrectInputHandler()
+        private static string RemoveHandler(Command com)
+        {
+            return "Remove";
+        }
+
+        private static string EditHandler(Command com)
+        {
+            return "Edit";
+        }
+
+        private static string IncorrectInputHandler(Command com)
         {
             return "Unknown input";
         }

@@ -2,10 +2,10 @@
 {
     internal struct Command
     {
-        string command { get; set; }
-        string? id { get; set; }
-        string? firstName { get; set; }
-        string? secondName { get; set; }
+        public string command { get;}
+        public string? id { get; }
+        public string? firstName { get; }
+        public string? secondName { get; }
 
         public Command()
         {
