@@ -15,13 +15,21 @@
             secondName = null;
         }
 
-        public Command(string fullCommand)
+        public Command(string fullCommand) : this()
         {
             var parsedCommand = fullCommand.Split('-');
-            command = parsedCommand[0];
-            id = parsedCommand[1];
-            firstName = parsedCommand[2];
-            secondName = parsedCommand[3];
+
+            if (parsedCommand.Length > 0)
+            {
+                command = parsedCommand[0];
+            }
+
+            if (parsedCommand.Length == 4)
+            {
+                id = parsedCommand[1];
+                firstName = parsedCommand[2];
+                secondName = parsedCommand[3];
+            }
         }
     }
 }
