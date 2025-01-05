@@ -22,5 +22,11 @@ namespace NamesControlClient
             stream.Dispose();
             client.Close();
         }
+
+        public static void AddNewNameHandler(string fstName, string sndName)
+        {
+            string fullCommand = "add-" + fstName + "-" + sndName;
+            EncodeAndSendMessage(fullCommand);
+        }
     }
 }

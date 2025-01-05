@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SenMessage = new Button();
             dataGridView1 = new DataGridView();
             FstName = new DataGridViewButtonColumn();
             SndName = new DataGridViewTextBoxColumn();
@@ -41,17 +40,6 @@
             ManiPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // SenMessage
-            // 
-            SenMessage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            SenMessage.Location = new Point(419, 12);
-            SenMessage.Name = "SenMessage";
-            SenMessage.Size = new Size(125, 29);
-            SenMessage.TabIndex = 0;
-            SenMessage.Text = "Send Message";
-            SenMessage.UseVisualStyleBackColor = true;
-            SenMessage.Click += SenMessage_Click;
-            // 
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -61,7 +49,7 @@
             dataGridView1.Location = new Point(12, 47);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(663, 289);
+            dataGridView1.Size = new Size(673, 293);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -86,6 +74,7 @@
             Add.TabIndex = 2;
             Add.Text = "Add new name";
             Add.UseVisualStyleBackColor = true;
+            Add.Click += Add_Click;
             // 
             // Remove
             // 
@@ -108,7 +97,7 @@
             // FefreshTable
             // 
             FefreshTable.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            FefreshTable.Location = new Point(550, 12);
+            FefreshTable.Location = new Point(560, 12);
             FefreshTable.Name = "FefreshTable";
             FefreshTable.Size = new Size(125, 29);
             FefreshTable.TabIndex = 5;
@@ -121,7 +110,7 @@
             ManiPanel.Controls.Add(dataGridView1);
             ManiPanel.Location = new Point(0, 0);
             ManiPanel.Name = "ManiPanel";
-            ManiPanel.Size = new Size(687, 348);
+            ManiPanel.Size = new Size(697, 352);
             ManiPanel.TabIndex = 6;
             // 
             // NCForm
@@ -129,12 +118,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(687, 348);
+            ClientSize = new Size(697, 352);
             Controls.Add(FefreshTable);
             Controls.Add(Edit);
             Controls.Add(Remove);
             Controls.Add(Add);
-            Controls.Add(SenMessage);
             Controls.Add(ManiPanel);
             MdiChildrenMinimizedAnchorBottom = false;
             MinimumSize = new Size(560, 140);
@@ -147,8 +135,6 @@
         }
 
         #endregion
-
-        private Button SenMessage;
         private DataGridView dataGridView1;
         private DataGridViewButtonColumn FstName;
         private DataGridViewTextBoxColumn SndName;
