@@ -11,12 +11,12 @@ namespace NamesControlClient
 {
     internal static class GuiEventHandler
     {
-        public static void TestClickHandler()
+        public static void EncodeAndSendMessage(string command)
         {
             TcpClient client = new TcpClient(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
             NetworkStream stream = client.GetStream();
 
-            byte[] message = PacketManager.StringToJson("command");
+            byte[] message = PacketManager.StringToJson(command);
             stream.Write(message);
 
             stream.Dispose();
