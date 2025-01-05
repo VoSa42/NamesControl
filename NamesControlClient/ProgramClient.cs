@@ -12,17 +12,10 @@ namespace NamesControlClient
         [STAThread]
         static void Main()
         {
-            if (winFormsGui)
-            {
-                // To customize application configuration such as set high DPI settings or default font,
-                // see https://aka.ms/applicationconfiguration.
-                ApplicationConfiguration.Initialize();
-                Application.Run(new NCForm());
-            }
-            else
-            {
-                Console.WriteLine("The console GUI is not implemented yet.");
-            }
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
+            ApplicationConfiguration.Initialize();
+            Application.Run(new NCForm());
         }
     }
 }
