@@ -72,7 +72,7 @@
             Add.Name = "Add";
             Add.Size = new Size(125, 29);
             Add.TabIndex = 2;
-            Add.Text = "Add new name";
+            Add.Text = "Add New Name";
             Add.UseVisualStyleBackColor = true;
             Add.Click += Add_Click;
             // 
@@ -101,7 +101,7 @@
             FefreshTable.Name = "FefreshTable";
             FefreshTable.Size = new Size(125, 29);
             FefreshTable.TabIndex = 5;
-            FefreshTable.Text = "Refresh table";
+            FefreshTable.Text = "Refresh Table";
             FefreshTable.UseVisualStyleBackColor = true;
             // 
             // ManiPanel
