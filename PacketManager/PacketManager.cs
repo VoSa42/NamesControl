@@ -27,9 +27,9 @@ namespace NamesControlLib
                 }
             }
 
-            string command = JsonSerializer.Deserialize<string>(jsonCommand);
+            string? command = JsonSerializer.Deserialize<string>(jsonCommand);
             
-            return command;
+            return command == null ? "" : command;
         }
     }
 }

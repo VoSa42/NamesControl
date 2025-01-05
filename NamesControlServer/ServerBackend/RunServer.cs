@@ -28,7 +28,7 @@ namespace NamesControlServer.ServerBackend
                 var sender = listener.AcceptTcpClient();
 
                 // Reads the byte stream from sender and store them into buffer
-                sender.GetStream().Read(buffer);
+                _ = sender.GetStream().Read(buffer);
 
                 string command = PacketManager.JsonToString(buffer);
                 Console.WriteLine(command);
