@@ -82,6 +82,7 @@
             FillFstName.Name = "FillFstName";
             FillFstName.Size = new Size(169, 27);
             FillFstName.TabIndex = 10;
+            FillFstName.TextChanged += FillFstName_TextChanged;
             // 
             // FillSndName
             // 
@@ -90,6 +91,7 @@
             FillSndName.Name = "FillSndName";
             FillSndName.Size = new Size(169, 27);
             FillSndName.TabIndex = 11;
+            FillSndName.TextChanged += FillSndName_TextChanged;
             // 
             // EditNameConfirm
             // 
@@ -100,6 +102,7 @@
             EditNameConfirm.TabIndex = 12;
             EditNameConfirm.Text = "Edit Name";
             EditNameConfirm.UseVisualStyleBackColor = true;
+            EditNameConfirm.Click += EditNameConfirm_Click;
             // 
             // CancelBut
             // 
@@ -110,6 +113,7 @@
             CancelBut.TabIndex = 13;
             CancelBut.Text = "Cancel";
             CancelBut.UseVisualStyleBackColor = true;
+            CancelBut.Click += CancelBut_Click;
             // 
             // EditNameForm
             // 

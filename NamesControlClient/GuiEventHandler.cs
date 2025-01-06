@@ -28,5 +28,11 @@ namespace NamesControlClient
             string fullCommand = "add-" + fstName + "-" + sndName;
             EncodeAndSendMessage(fullCommand);
         }
+
+        public static void EditNameHandler(int id, string fstName, string sndName)
+        {
+            string fullCommand = "edit-" + id + "-" + fstName + "-" + sndName;
+            EncodeAndSendMessage(fullCommand);
+        }
     }
 }
