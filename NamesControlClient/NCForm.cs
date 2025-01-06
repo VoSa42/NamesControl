@@ -12,9 +12,10 @@ namespace NamesControlClient
 
         }
 
-        private void Add_Click(object sender, EventArgs e)
+        private void AddBut_Click(object sender, EventArgs e)
         {
-            GuiEventHandler.AddNewNameHandler("Matej", "Novak");
+            var addNewF = new AddNewForm();
+            addNewF.Show();
         }
     }
 }

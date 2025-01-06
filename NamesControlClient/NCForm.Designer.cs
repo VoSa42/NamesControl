@@ -31,10 +31,10 @@
             dataGridView1 = new DataGridView();
             FstName = new DataGridViewButtonColumn();
             SndName = new DataGridViewTextBoxColumn();
-            Add = new Button();
-            Remove = new Button();
-            Edit = new Button();
-            FefreshTable = new Button();
+            AddBut = new Button();
+            RemoveBut = new Button();
+            EditBut = new Button();
+            FefreshTableBut = new Button();
             ManiPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ManiPanel.SuspendLayout();
@@ -49,7 +49,7 @@
             dataGridView1.Location = new Point(12, 47);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(673, 293);
+            dataGridView1.Size = new Size(864, 489);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -66,43 +66,43 @@
             SndName.MinimumWidth = 6;
             SndName.Name = "SndName";
             // 
-            // Add
+            // AddBut
             // 
-            Add.Location = new Point(12, 12);
-            Add.Name = "Add";
-            Add.Size = new Size(125, 29);
-            Add.TabIndex = 2;
-            Add.Text = "Add New Name";
-            Add.UseVisualStyleBackColor = true;
-            Add.Click += Add_Click;
+            AddBut.Location = new Point(12, 12);
+            AddBut.Name = "AddBut";
+            AddBut.Size = new Size(125, 29);
+            AddBut.TabIndex = 2;
+            AddBut.Text = "Add New Name";
+            AddBut.UseVisualStyleBackColor = true;
+            AddBut.Click += AddBut_Click;
             // 
-            // Remove
+            // RemoveBut
             // 
-            Remove.Location = new Point(143, 12);
-            Remove.Name = "Remove";
-            Remove.Size = new Size(125, 29);
-            Remove.TabIndex = 3;
-            Remove.Text = "Remove Name";
-            Remove.UseVisualStyleBackColor = true;
+            RemoveBut.Location = new Point(143, 12);
+            RemoveBut.Name = "RemoveBut";
+            RemoveBut.Size = new Size(125, 29);
+            RemoveBut.TabIndex = 3;
+            RemoveBut.Text = "Remove Name";
+            RemoveBut.UseVisualStyleBackColor = true;
             // 
-            // Edit
+            // EditBut
             // 
-            Edit.Location = new Point(274, 12);
-            Edit.Name = "Edit";
-            Edit.Size = new Size(125, 29);
-            Edit.TabIndex = 4;
-            Edit.Text = "Edit Name";
-            Edit.UseVisualStyleBackColor = true;
+            EditBut.Location = new Point(274, 12);
+            EditBut.Name = "EditBut";
+            EditBut.Size = new Size(125, 29);
+            EditBut.TabIndex = 4;
+            EditBut.Text = "Edit Name";
+            EditBut.UseVisualStyleBackColor = true;
             // 
-            // FefreshTable
+            // FefreshTableBut
             // 
-            FefreshTable.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            FefreshTable.Location = new Point(560, 12);
-            FefreshTable.Name = "FefreshTable";
-            FefreshTable.Size = new Size(125, 29);
-            FefreshTable.TabIndex = 5;
-            FefreshTable.Text = "Refresh Table";
-            FefreshTable.UseVisualStyleBackColor = true;
+            FefreshTableBut.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            FefreshTableBut.Location = new Point(751, 12);
+            FefreshTableBut.Name = "FefreshTableBut";
+            FefreshTableBut.Size = new Size(125, 29);
+            FefreshTableBut.TabIndex = 5;
+            FefreshTableBut.Text = "Refresh Table";
+            FefreshTableBut.UseVisualStyleBackColor = true;
             // 
             // ManiPanel
             // 
@@ -110,7 +110,7 @@
             ManiPanel.Controls.Add(dataGridView1);
             ManiPanel.Location = new Point(0, 0);
             ManiPanel.Name = "ManiPanel";
-            ManiPanel.Size = new Size(697, 352);
+            ManiPanel.Size = new Size(888, 548);
             ManiPanel.TabIndex = 6;
             // 
             // NCForm
@@ -118,11 +118,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(697, 352);
-            Controls.Add(FefreshTable);
-            Controls.Add(Edit);
-            Controls.Add(Remove);
-            Controls.Add(Add);
+            ClientSize = new Size(888, 548);
+            Controls.Add(FefreshTableBut);
+            Controls.Add(EditBut);
+            Controls.Add(RemoveBut);
+            Controls.Add(AddBut);
             Controls.Add(ManiPanel);
             MdiChildrenMinimizedAnchorBottom = false;
             MinimumSize = new Size(560, 140);
@@ -138,10 +138,10 @@
         private DataGridView dataGridView1;
         private DataGridViewButtonColumn FstName;
         private DataGridViewTextBoxColumn SndName;
-        private Button Add;
-        private Button Remove;
-        private Button Edit;
-        private Button FefreshTable;
+        private Button AddBut;
+        private Button RemoveBut;
+        private Button EditBut;
+        private Button FefreshTableBut;
         private Panel ManiPanel;
     }
 }
