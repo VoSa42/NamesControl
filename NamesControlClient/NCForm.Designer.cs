@@ -93,6 +93,7 @@
             EditBut.TabIndex = 4;
             EditBut.Text = "Edit Name";
             EditBut.UseVisualStyleBackColor = true;
+            EditBut.Click += EditBut_Click;
             // 
             // FefreshTableBut
             // 

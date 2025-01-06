@@ -10,14 +10,12 @@ using System.Windows.Forms;
 
 namespace NamesControlClient
 {
-    public partial class AddNewForm : Form
+    public partial class AddNewNameForm : Form
     {
-        //public string FstName { get; private set; }
-
         private string fstName = string.Empty;
         private string sndName = string.Empty;
 
-        public AddNewForm()
+        public AddNewNameForm()
         {
             InitializeComponent();
         }
@@ -27,9 +25,9 @@ namespace NamesControlClient
             fstName = FillFstName.Text;
         }
 
-        private void FillSecondName_TextChanged(object sender, EventArgs e)
+        private void FillSndName_TextChanged(object sender, EventArgs e)
         {
-            sndName = FillSecondName.Text;
+            sndName = FillSndName.Text;
         }
 
         private void AddNameConfirm_Click(object sender, EventArgs e)

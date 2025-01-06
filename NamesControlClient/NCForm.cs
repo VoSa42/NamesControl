@@ -14,8 +14,14 @@ namespace NamesControlClient
 
         private void AddBut_Click(object sender, EventArgs e)
         {
-            var addNewF = new AddNewForm();
+            var addNewF = new AddNewNameForm();
             addNewF.Show();
+        }
+
+        private void EditBut_Click(object sender, EventArgs e)
+        {
+            var editNewF = new EditNameForm();
+            editNewF.Show();
         }
     }
 }

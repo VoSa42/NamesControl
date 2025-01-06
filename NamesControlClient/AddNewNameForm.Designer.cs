@@ -1,6 +1,6 @@
 ﻿namespace NamesControlClient
 {
-    partial class AddNewForm
+    partial class AddNewNameForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,7 +33,7 @@
             FillFstName = new TextBox();
             FstNameLabel = new Label();
             SndNameLabel = new Label();
-            FillSecondName = new TextBox();
+            FillSndName = new TextBox();
             CancelBut = new Button();
             SuspendLayout();
             // 
@@ -87,14 +87,14 @@
             SndNameLabel.TabIndex = 4;
             SndNameLabel.Text = "Second Name:";
             // 
-            // FillSecondName
+            // FillSndName
             // 
-            FillSecondName.Anchor = AnchorStyles.None;
-            FillSecondName.Location = new Point(267, 145);
-            FillSecondName.Name = "FillSecondName";
-            FillSecondName.Size = new Size(169, 27);
-            FillSecondName.TabIndex = 5;
-            FillSecondName.TextChanged += FillSecondName_TextChanged;
+            FillSndName.Anchor = AnchorStyles.None;
+            FillSndName.Location = new Point(267, 145);
+            FillSndName.Name = "FillSndName";
+            FillSndName.Size = new Size(169, 27);
+            FillSndName.TabIndex = 5;
+            FillSndName.TextChanged += FillSndName_TextChanged;
             // 
             // CancelBut
             // 
@@ -107,20 +107,21 @@
             CancelBut.UseVisualStyleBackColor = true;
             CancelBut.Click += CancelBut_Click;
             // 
-            // AddNewForm
+            // AddNewNameForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(606, 331);
             Controls.Add(CancelBut);
-            Controls.Add(FillSecondName);
+            Controls.Add(FillSndName);
             Controls.Add(SndNameLabel);
             Controls.Add(FstNameLabel);
             Controls.Add(FillFstName);
             Controls.Add(AddNameConfirm);
             Controls.Add(AddNameSpec);
-            Name = "AddNewForm";
+            Name = "AddNewNameForm";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "Add New Name";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -132,7 +133,7 @@
         private TextBox FillFstName;
         private Label FstNameLabel;
         private Label SndNameLabel;
-        private TextBox FillSecondName;
+        private TextBox FillSndName;
         private Button CancelBut;
     }
 }
