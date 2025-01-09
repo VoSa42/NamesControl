@@ -11,6 +11,7 @@ namespace NamesControlLib
         None,
         Add,
         Remove,
-        Edit
+        Edit,
+        Refresh
     }
 }
