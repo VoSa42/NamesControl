@@ -5,31 +5,19 @@ namespace NamesControlLib
 {
     public static class SocketManager
     {
-        public static byte[] StringToJson(string command)
+        public static byte[] CommandToMessage(Command command)
         {
-            string jsonCommand = JsonSerializer.Serialize(command);
+            string jsonCommand = command.GetJson();
             byte[] message = Encoding.Unicode.GetBytes(jsonCommand);
 
             return message;
         }
 
-        public static string JsonToString(byte[] bytesBuffer)
+        public static Command MessageToCommand(byte[] bytesBuffer)
         {
-            string message = Encoding.Unicode.GetString(bytesBuffer);
+            string jsonMessage = Encoding.Unicode.GetString(bytesBuffer);
 
-            string jsonCommand = "";
-
-            foreach (var readChar in message)
-            {
-                if (readChar != '\0')
-                {
-                    jsonCommand += readChar;
-                }
-            }
-
-            string? command = JsonSerializer.Deserialize<string>(jsonCommand);
-            
-            return command == null ? "" : command;
+            return new Command(jsonMessage);
         }
     }
 }

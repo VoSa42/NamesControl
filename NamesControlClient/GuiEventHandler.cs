@@ -11,12 +11,12 @@ namespace NamesControlClient
 {
     internal static class GuiEventHandler
     {
-        public static void EncodeAndSendMessage(string command)
+        public static void EncodeAndSendMessage(Command command)
         {
             TcpClient client = new TcpClient(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
             NetworkStream stream = client.GetStream();
 
-            byte[] message = PacketManager.StringToJson(command);
+            byte[] message = SocketManager.CommandToMessage(command);
             stream.Write(message);
 
             stream.Dispose();
@@ -25,14 +25,14 @@ namespace NamesControlClient
 
         public static void AddNewNameHandler(string fstName, string sndName)
         {
-            string fullCommand = "add-" + fstName + "-" + sndName;
-            EncodeAndSendMessage(fullCommand);
+            Command com = new Command(CommandType.Add, fstName, sndName);
+            EncodeAndSendMessage(com);
         }
 
         public static void EditNameHandler(int id, string fstName, string sndName)
         {
-            string fullCommand = "edit-" + id + "-" + fstName + "-" + sndName;
-            EncodeAndSendMessage(fullCommand);
+            Command com = new Command(CommandType.Edit, fstName, sndName, id);
+            EncodeAndSendMessage(com);
         }
     }
 }
