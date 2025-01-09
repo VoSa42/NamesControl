@@ -12,26 +12,22 @@ namespace NamesControlServer.ServerBackend
 
     internal class CommandHandler
     {
-        public static string CommandExecutor(string command)
+        public static string CommandExecutor(Command com)
         {
-            Command parsedCom = new(command);
-
             CommandHandlerFunc comHandler = new(NullHandler);
 
-            switch (parsedCom.command)
+            switch (com.command)
             {
-                case "":
+                case CommandType.None:
                     comHandler = new(NullHandler);
                     break;
-                case null:
-                    throw new Exception("Command is a null reference", new NullReferenceException());
-                case "add":
+                case CommandType.Add:
                     comHandler = new(AddHandler);
                     break;
-                case "remove":
+                case CommandType.Remove:
                     comHandler = new(RemoveHandler);
                     break;
-                case "edit":
+                case CommandType.Edit:
                     comHandler = new(EditHandler);
                     break;
                 default:
@@ -39,7 +35,7 @@ namespace NamesControlServer.ServerBackend
                     break;
             }
 
-            return comHandler(parsedCom);
+            return comHandler(com);
         }
 
         private static string NullHandler(Command com)

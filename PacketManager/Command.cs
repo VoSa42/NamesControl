@@ -4,20 +4,20 @@ namespace NamesControlLib
 {
     public struct Command
     {
-        public string command { get; }
+        public CommandType command { get; }
         public int id { get; }
         public string firstName { get; }
         public string secondName { get; }
 
         public Command()
         {
-            command = "";
+            command = CommandType.None;
             id = -1;
             firstName = "";
             secondName = "";
         }
 
-        public Command(string _command, int _id, string _firstName, string _secondName)
+        public Command(CommandType _command, string _firstName, string _secondName, int _id = -1)
         {
             command = _command;
             id = _id;
