@@ -35,7 +35,7 @@ namespace NamesControlServer.ServerBackend
                 // Reads the byte stream from sender and store them into buffer
                 _ = sender.GetStream().Read(buffer);
 
-                string command = PacketManager.JsonToString(buffer);
+                string command = SocketManager.JsonToString(buffer);
                 Console.WriteLine(command);
                 string answer = CommandHandler.CommandExecutor(command);
                 Console.WriteLine($"Answer: {answer}");

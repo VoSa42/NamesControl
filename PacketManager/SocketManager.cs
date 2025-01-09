@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NamesControlLib
 {
-    public static class PacketManager
+    public static class SocketManager
     {
         public static byte[] StringToJson(string command)
         {

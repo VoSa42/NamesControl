@@ -1,8 +1,8 @@
-﻿namespace NamesControlServer.ServerBackend
+﻿namespace NamesControlLib
 {
-    internal struct Command
+    public struct Command
     {
-        public string command { get;}
+        public string command { get; }
         public string? id { get; }
         public string? firstName { get; }
         public string? secondName { get; }

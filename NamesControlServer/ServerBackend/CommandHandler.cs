@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NamesControlLib;
+
 namespace NamesControlServer.ServerBackend
 {
     internal delegate string CommandHandlerFunc(Command com);
