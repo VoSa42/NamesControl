@@ -7,11 +7,6 @@ namespace NamesControlClient
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void AddBut_Click(object sender, EventArgs e)
         {
             var addNewF = new AddNewNameForm();
@@ -22,6 +17,23 @@ namespace NamesControlClient
         {
             var editNewF = new EditNameForm();
             editNewF.Show();
+        }
+
+        private void RemoveBut_Click(object sender, EventArgs e)
+        {
+            int dummyId = 42;
+
+            GuiEventHandler.RemoveNameHandler(dummyId);
+        }
+
+        private void FefreshTableBut_Click(object sender, EventArgs e)
+        {
+            GuiEventHandler.RefreshHandler();
+        }
+
+        private void NamesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            NamesDataGridView.Rows.Add(["Joe", "Dart"]);
         }
     }
 }

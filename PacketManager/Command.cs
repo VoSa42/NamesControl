@@ -17,7 +17,10 @@ namespace NamesControlLib
             secondName = "";
         }
 
-        public Command(CommandType _command, string _firstName, string _secondName, int _id = -1)
+        public Command(CommandType _command,
+            string _firstName = "",
+            string _secondName = "",
+            int _id = -1)
         {
             command = _command;
             id = _id;

@@ -34,5 +34,17 @@ namespace NamesControlClient
             Command com = new Command(CommandType.Edit, fstName, sndName, id);
             EncodeAndSendMessage(com);
         }
+
+        public static void RemoveNameHandler(int id)
+        {
+            Command com = new Command(CommandType.Remove, _id: id);
+            EncodeAndSendMessage(com);
+        }
+
+        public static void RefreshHandler()
+        {
+            Command com = new Command(CommandType.Refresh);
+            EncodeAndSendMessage(com);
+        }
     }
 }
