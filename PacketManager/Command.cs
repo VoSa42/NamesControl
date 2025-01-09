@@ -1,15 +1,15 @@
 ﻿using System.Text.Json;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace NamesControlLib
 {
     public struct Command
     {
-        public CommandType command { get; set; }
-        public string firstName { get; set; }
-        public string secondName { get; set; }
-        public int id { get; set; }
-
-        public Command() : this(CommandType.None) { }
+        public CommandType command { get; set; } = CommandType.None;
+        public string firstName { get; set; } = string.Empty;
+        public string secondName { get; set; } = string.Empty;
+        public int id { get; set; } = -1;
 
         public Command(CommandType _command,
             string _firstName = "",
@@ -17,18 +17,9 @@ namespace NamesControlLib
             int _id = -1)
         {
             command = _command;
-            id = _id;
             firstName = _firstName;
             secondName = _secondName;
-        }
-
-        public Command(string jsonCommand) : this()
-        {
-            Console.WriteLine(jsonCommand);
-
-            Command parsedCommand = JsonConvert.DeserializeObject<Command>(jsonCommand);
-
-            this = parsedCommand;
+            id = _id;
         }
 
         public string GetJson()
@@ -39,7 +30,6 @@ namespace NamesControlLib
         public override string ToString()
         {
             return command + " "
-                + id + " "
                 + firstName + " "
                 + secondName + " "
                 + id + " ";

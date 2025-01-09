@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Newtonsoft.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace NamesControlLib
@@ -17,7 +18,9 @@ namespace NamesControlLib
         {
             string jsonMessage = Encoding.Unicode.GetString(bytesBuffer);
 
-            return new Command(jsonMessage);
+            Command com = JsonConvert.DeserializeObject<Command>(jsonMessage);
+
+            return com;
         }
     }
 }
