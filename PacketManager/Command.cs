@@ -4,10 +4,10 @@ namespace NamesControlLib
 {
     public struct Command
     {
-        public CommandType command { get; }
-        public int id { get; }
-        public string firstName { get; }
-        public string secondName { get; }
+        public CommandType command { get; set; }
+        public string firstName { get; set; }
+        public string secondName { get; set; }
+        public int id { get; set; }
 
         public Command() : this(CommandType.None) { }
 
@@ -24,13 +24,16 @@ namespace NamesControlLib
 
         public Command(string jsonCommand) : this()
         {
-            Command parsedCommand = JsonSerializer.Deserialize<Command>(jsonCommand);
+            Console.WriteLine(jsonCommand);
+
+            Command parsedCommand = JsonConvert.DeserializeObject<Command>(jsonCommand);
+
             this = parsedCommand;
         }
 
         public string GetJson()
         {
-            return JsonSerializer.Serialize<Command>(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public override string ToString()
@@ -38,7 +41,8 @@ namespace NamesControlLib
             return command + " "
                 + id + " "
                 + firstName + " "
-                + secondName + " ";
+                + secondName + " "
+                + id + " ";
         }
     }
 }
