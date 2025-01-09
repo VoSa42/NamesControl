@@ -1,41 +1,39 @@
-﻿namespace NamesControlLib
+﻿using System.Text.Json;
+
+namespace NamesControlLib
 {
     public struct Command
     {
         public string command { get; }
-        public string? id { get; }
-        public string? firstName { get; }
-        public string? secondName { get; }
+        public int id { get; }
+        public string firstName { get; }
+        public string secondName { get; }
 
         public Command()
         {
             command = "";
-            id = null;
-            firstName = null;
-            secondName = null;
+            id = -1;
+            firstName = "";
+            secondName = "";
         }
 
-        public Command(string fullCommand) : this()
+        public Command(string _command, int _id, string _firstName, string _secondName)
         {
-            var parsedCommand = fullCommand.Split('-');
+            command = _command;
+            id = _id;
+            firstName = _firstName;
+            secondName = _secondName;
+        }
 
-            if (parsedCommand.Length > 0)
-            {
-                command = parsedCommand[0];
-            }
+        public Command(string jsonCommand) : this()
+        {
+            Command parsedCommand = JsonSerializer.Deserialize<Command>(jsonCommand);
+            this = parsedCommand;
+        }
 
-            if (command == "add")
-            {
-                firstName = parsedCommand[1];
-                secondName = parsedCommand[2];
-            }
-
-            if (command == "edit" || command == "remove")
-            {
-                id = parsedCommand[1];
-                firstName = parsedCommand[2];
-                secondName = parsedCommand[3];
-            }
+        public string GetJson()
+        {
+            return JsonSerializer.Serialize<Command>(this);
         }
 
         public override string ToString()
