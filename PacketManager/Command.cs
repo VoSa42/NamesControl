@@ -9,13 +9,7 @@ namespace NamesControlLib
         public string firstName { get; }
         public string secondName { get; }
 
-        public Command()
-        {
-            command = CommandType.None;
-            id = -1;
-            firstName = "";
-            secondName = "";
-        }
+        public Command() : this(CommandType.None) { }
 
         public Command(CommandType _command,
             string _firstName = "",
