@@ -23,6 +23,8 @@ namespace NamesControlServer.ServerBackend
                 case "":
                     comHandler = new(NullHandler);
                     break;
+                case null:
+                    throw new Exception("Command is a null reference", new NullReferenceException());
                 case "add":
                     comHandler = new(AddHandler);
                     break;
