@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime;
+using Microsoft.Data.SqlClient;
 
 namespace NamesControlLib.Messages
 {
     public class ServerAnswer : Message
     {
         public string? ErrorMessage { get; } = null;
-        public List<(int, string, string)> Grid { get; internal set; } = new();
+        public List<DatabaseRaw> Grid { get; internal set; } = [];
 
-        public ServerAnswer(int dummyDatabaseConnection, string? errorMessage = null)
+        public ServerAnswer(List<DatabaseRaw> grid, string? errorMessage = null)
         {
-            // TODO: fill in the Grid from database
-
+            Grid = grid;
             ErrorMessage = errorMessage;
         }
 
-        private void AddRow(int id, string firstName, string secondName)
+        private void AddRaw(int id, string firstName, string secondName)
         {
             Grid.Add(new(id, firstName, secondName));
         }
@@ -35,8 +35,8 @@ namespace NamesControlLib.Messages
             int cellSize = 11;
             foreach (var row in Grid)
             {
-                if (row.Item2.Length > cellSize) { cellSize = row.Item2.Length; }
-                if (row.Item3.Length > cellSize) { cellSize = row.Item3.Length; }
+                if (row.FirstName.Length > cellSize) { cellSize = row.FirstName.Length; }
+                if (row.SecondName.Length > cellSize) { cellSize = row.SecondName.Length; }
             }
 
             Console.WriteLine(String.Format($"{{0,6}} | {{1,{Math.Abs(cellSize)}}} | {{2,{Math.Abs(cellSize)}}}\n",
@@ -45,7 +45,7 @@ namespace NamesControlLib.Messages
             foreach (var row in Grid)
             {
                 result += String.Format($"{{0,6}} | {{1,{Math.Abs(cellSize)}}} | {{2,{Math.Abs(cellSize)}}}\n",
-                row.Item1, row.Item2, row.Item3);
+                row.Id, row.FirstName, row.SecondName);
             }
 
             return result;

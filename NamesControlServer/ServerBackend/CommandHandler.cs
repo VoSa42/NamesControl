@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using NamesControlLib;
 using NamesControlLib.Messages;
+using NamesControlServer.Database;
 
 namespace NamesControlServer.ServerBackend
 {
@@ -13,8 +14,11 @@ namespace NamesControlServer.ServerBackend
 
     internal class CommandHandler
     {
-        public static ServerAnswer CommandExecutor(Command com)
+        public static ServerAnswer CommandExecutor(byte[] buffer)
         {
+            Command com = SocketManager.SocketToMessage<Command>(buffer);
+            Console.WriteLine(com);
+
             CommandHandlerFunc comHandler = new(NullHandler);
 
             switch (com.command)
@@ -44,37 +48,40 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer NullHandler(Command com)
         {
-            ServerAnswer answer = new(42, "No reqest");     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new(DatabaseManager.GetGrid(), "No reqest");     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
 
         private static ServerAnswer AddHandler(Command com)
         {
-            ServerAnswer answer = new(42);
+            ServerAnswer answer =
+                new(DatabaseManager.GetGrid(), DatabaseManager.AddRecord());
             return answer;
         }
 
         private static ServerAnswer RemoveHandler(Command com)
         {
-            ServerAnswer answer = new(42);
+            ServerAnswer answer =
+                new(DatabaseManager.GetGrid(), DatabaseManager.RemoveRecord());
             return answer;
         }
 
         private static ServerAnswer EditHandler(Command com)
         {
-            ServerAnswer answer = new(42);
+            ServerAnswer answer =
+                new(DatabaseManager.GetGrid(), DatabaseManager.EditRecord());
             return answer;
         }
 
         private static ServerAnswer RefreshHandler(Command com)
         {
-            ServerAnswer answer = new(42);
+            ServerAnswer answer = new(DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new(42, "Incorrect request");     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new(DatabaseManager.GetGrid(), "Incorrect request");     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
     }

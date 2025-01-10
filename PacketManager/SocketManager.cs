@@ -18,11 +18,11 @@ namespace NamesControlLib
             return socket;
         }
 
-        public static Message SocketToMessage(byte[] bytesBuffer)
+        public static messageType SocketToMessage<messageType>(byte[] bytesBuffer)
         {
             string jsonMessage = Encoding.Unicode.GetString(bytesBuffer);
 
-            Message message = JsonConvert.DeserializeObject<Message>(jsonMessage);
+            messageType message = JsonConvert.DeserializeObject<messageType>(jsonMessage);
 
             return message;
         }
