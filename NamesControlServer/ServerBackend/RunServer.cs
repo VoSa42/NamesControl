@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 using NamesControlLib;
+using NamesControlLib.Messages;
 
 namespace NamesControlServer.ServerBackend
 {
@@ -35,7 +36,7 @@ namespace NamesControlServer.ServerBackend
                 // Reads the byte stream from sender and store them into buffer
                 _ = sender.GetStream().Read(buffer);
 
-                Command command = SocketManager.MessageToCommand(buffer);
+                Command command = (Command)SocketManager.SocketToMessage(buffer);
                 Console.WriteLine(command);
                 string answer = CommandHandler.CommandExecutor(command);
                 Console.WriteLine($"Answer: {answer}");

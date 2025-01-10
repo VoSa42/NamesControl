@@ -1,26 +1,30 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
-using System.Text.Json;
+
+using NamesControlLib.Messages;
 
 namespace NamesControlLib
 {
     public static class SocketManager
     {
-        public static byte[] CommandToMessage(Command command)
+        // Misto 'Command' bude genericky typ nebo abstraktni trida 'Socket'.
+        // Taky to chce adekvatne prejmenovat metody
+
+        public static byte[] MessageToSocket(Message command)
         {
             string jsonCommand = command.GetJson();
-            byte[] message = Encoding.Unicode.GetBytes(jsonCommand);
+            byte[] socket = Encoding.Unicode.GetBytes(jsonCommand);
 
-            return message;
+            return socket;
         }
 
-        public static Command MessageToCommand(byte[] bytesBuffer)
+        public static Message SocketToMessage(byte[] bytesBuffer)
         {
             string jsonMessage = Encoding.Unicode.GetString(bytesBuffer);
 
-            Command com = JsonConvert.DeserializeObject<Command>(jsonMessage);
+            Message message = JsonConvert.DeserializeObject<Message>(jsonMessage);
 
-            return com;
+            return message;
         }
     }
 }

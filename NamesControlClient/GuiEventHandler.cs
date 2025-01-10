@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using NamesControlLib;
+using NamesControlLib.Messages;
 
 namespace NamesControlClient
 {
@@ -16,11 +17,11 @@ namespace NamesControlClient
             TcpClient client = new TcpClient(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
             NetworkStream stream = client.GetStream();
 
-            byte[] message = SocketManager.CommandToMessage(command);
+            byte[] message = SocketManager.MessageToSocket(command);
             stream.Write(message);
 
-            stream.Dispose();
-            client.Close();
+            //stream.Dispose();
+            //client.Close();
         }
 
         public static void AddNewNameHandler(string fstName, string sndName)
