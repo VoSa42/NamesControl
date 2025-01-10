@@ -9,11 +9,11 @@ using NamesControlLib.Messages;
 
 namespace NamesControlServer.ServerBackend
 {
-    internal delegate string CommandHandlerFunc(Command com);
+    internal delegate ServerAnswer CommandHandlerFunc(Command com);
 
     internal class CommandHandler
     {
-        public static string CommandExecutor(Command com)
+        public static ServerAnswer CommandExecutor(Command com)
         {
             CommandHandlerFunc comHandler = new(NullHandler);
 
@@ -42,34 +42,40 @@ namespace NamesControlServer.ServerBackend
             return comHandler(com);
         }
 
-        private static string NullHandler(Command com)
+        private static ServerAnswer NullHandler(Command com)
         {
-            return "Null";
+            ServerAnswer answer = new(42, "No reqest");     // This should throw an exception instead of error message (because this should not happen)
+            return answer;
         }
 
-        private static string AddHandler(Command com)
+        private static ServerAnswer AddHandler(Command com)
         {
-            return "Add";
+            ServerAnswer answer = new(42);
+            return answer;
         }
 
-        private static string RemoveHandler(Command com)
+        private static ServerAnswer RemoveHandler(Command com)
         {
-            return "Remove";
+            ServerAnswer answer = new(42);
+            return answer;
         }
 
-        private static string EditHandler(Command com)
+        private static ServerAnswer EditHandler(Command com)
         {
-            return "Edit";
+            ServerAnswer answer = new(42);
+            return answer;
         }
 
-        private static string RefreshHandler(Command com)
+        private static ServerAnswer RefreshHandler(Command com)
         {
-            return "Refresh";
+            ServerAnswer answer = new(42);
+            return answer;
         }
 
-        private static string IncorrectInputHandler(Command com)
+        private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            return "Unknown input";
+            ServerAnswer answer = new(42, "Incorrect request");     // This should throw an exception instead of error message (because this should not happen)
+            return answer;
         }
     }
 }

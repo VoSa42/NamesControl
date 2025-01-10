@@ -10,7 +10,19 @@ namespace NamesControlLib.Messages
     public class ServerAnswer : Message
     {
         public string? ErrorMessage { get; } = null;
-        public (int, string, string)[] Grid { get; } = { };
+        public List<(int, string, string)> Grid { get; internal set; } = new();
+
+        public ServerAnswer(int dummyDatabaseConnection, string? errorMessage = null)
+        {
+            // TODO: fill in the Grid from database
+
+            ErrorMessage = errorMessage;
+        }
+
+        private void AddRow(int id, string firstName, string secondName)
+        {
+            Grid.Add(new(id, firstName, secondName));
+        }
 
         public override string ToString()
         {

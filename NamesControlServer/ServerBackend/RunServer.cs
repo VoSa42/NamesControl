@@ -38,8 +38,10 @@ namespace NamesControlServer.ServerBackend
 
                 Command command = (Command)SocketManager.SocketToMessage(buffer);
                 Console.WriteLine(command);
-                string answer = CommandHandler.CommandExecutor(command);
+                ServerAnswer answer = CommandHandler.CommandExecutor(command);
                 Console.WriteLine($"Answer: {answer}");
+
+                // TODO: send the answer back to the client
             }
         }
 
