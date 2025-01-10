@@ -22,6 +22,8 @@ namespace NamesControlLib
         {
             string jsonMessage = Encoding.Unicode.GetString(bytesBuffer);
 
+            Console.WriteLine(jsonMessage);
+
             messageType message = JsonConvert.DeserializeObject<messageType>(jsonMessage);
 
             return message;

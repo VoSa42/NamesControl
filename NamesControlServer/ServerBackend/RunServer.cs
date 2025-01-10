@@ -38,7 +38,7 @@ namespace NamesControlServer.ServerBackend
                 _ = sender.GetStream().Read(buffer);
 
                 ServerAnswer answer = CommandHandler.CommandExecutor(buffer);
-                Console.WriteLine($"Answer:\n{answer}");
+                //Console.WriteLine($"Answer:\n{answer}");
 
                 // TODO: send the answer back to the client
             }

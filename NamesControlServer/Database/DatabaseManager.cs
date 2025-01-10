@@ -72,7 +72,7 @@ namespace NamesControlServer.Database
 
             CloseConnection(connection);
 
-            Console.WriteLine(grid);
+            //Console.WriteLine(grid);
 
             return grid;
         }

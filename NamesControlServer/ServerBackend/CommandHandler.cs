@@ -16,7 +16,7 @@ namespace NamesControlServer.ServerBackend
     {
         public static ServerAnswer CommandExecutor(byte[] buffer)
         {
-            Command com = SocketManager.SocketToMessage<Command>(buffer);
+            Command com = (Command)SocketManager.SocketToMessage<Command>(buffer);
             Console.WriteLine(com);
 
             CommandHandlerFunc comHandler = new(NullHandler);
