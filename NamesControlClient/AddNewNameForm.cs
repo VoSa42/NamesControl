@@ -32,8 +32,7 @@ namespace NamesControlClient
 
         private void AddNameConfirm_Click(object sender, EventArgs e)
         {
-            GuiEventHandler.AddNewNameHandler(fstName, sndName);
-
+            var v = GuiEventHandler.AddNewNameHandler(fstName, sndName);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

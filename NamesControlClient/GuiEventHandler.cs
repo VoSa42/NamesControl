@@ -12,7 +12,7 @@ namespace NamesControlClient
 {
     internal static class GuiEventHandler
     {
-        public static ServerAnswer EncodeAndSendMessage(Command command)
+        public static ServerAnswer CommandExecutor(Command command)
         {
             TcpClient client = new TcpClient(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
             NetworkStream stream = client.GetStream();
@@ -35,25 +35,25 @@ namespace NamesControlClient
         public static ServerAnswer AddNewNameHandler(string fstName, string sndName)
         {
             Command com = new Command(CommandType.Add, fstName, sndName);
-            return EncodeAndSendMessage(com);
+            return CommandExecutor(com);
         }
 
         public static ServerAnswer EditNameHandler(int id, string fstName, string sndName)
         {
             Command com = new Command(CommandType.Edit, fstName, sndName, id);
-            return EncodeAndSendMessage(com);
+            return CommandExecutor(com);
         }
 
         public static ServerAnswer RemoveNameHandler(int id)
         {
             Command com = new Command(CommandType.Remove, _id: id);
-            return EncodeAndSendMessage(com);
+            return CommandExecutor(com);
         }
 
         public static ServerAnswer RefreshHandler()
         {
             Command com = new Command(CommandType.Refresh);
-            return EncodeAndSendMessage(com);
+            return CommandExecutor(com);
         }
     }
 }

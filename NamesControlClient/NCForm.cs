@@ -8,7 +8,7 @@ namespace NamesControlClient
 {
     public partial class NCForm : Form
     {
-        private DataGrid DGrid { get; set; } = new([]);
+        //protected DataGrid DGrid { get; set; } = new([]);
 
         public NCForm()
         {
@@ -38,7 +38,8 @@ namespace NamesControlClient
         private void AddBut_Click(object sender, EventArgs e)
         {
             var addNewF = new AddNewNameForm();
-            addNewF.Show();
+            addNewF.ShowDialog();
+            RefreshTable();
         }
 
         private void EditBut_Click(object sender, EventArgs e)

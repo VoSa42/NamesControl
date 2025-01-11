@@ -55,7 +55,7 @@ namespace NamesControlServer.ServerBackend
         private static ServerAnswer AddHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.GetGrid(), DatabaseManager.AddRecord());
+                new(DatabaseManager.GetGrid(), DatabaseManager.AddRecord(com.firstName, com.secondName));
             return answer;
         }
 

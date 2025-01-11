@@ -30,8 +30,20 @@ namespace NamesControlServer.Database
             con.Close();
         }
 
-        public static string? AddRecord()
+        private static void RunQuery(string query)
         {
+            SqlConnection con = OpenConnection();
+
+            var command = new SqlCommand(query, con);
+            var reader = command.ExecuteReader();
+
+            CloseConnection(con);
+        }
+
+        public static string? AddRecord(string firstName, string secondName)
+        {
+            string query = $"INSERT INTO Names (FirstName, SecondName) VALUES ('{firstName}', '{secondName}');";
+            RunQuery(query);
             return null;
         }
 
@@ -71,8 +83,6 @@ namespace NamesControlServer.Database
             }
 
             CloseConnection(connection);
-
-            //Console.WriteLine(grid);
 
             return grid;
         }
