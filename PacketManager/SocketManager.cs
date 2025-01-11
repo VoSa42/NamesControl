@@ -10,9 +10,9 @@ namespace NamesControlLib
         // Misto 'Command' bude genericky typ nebo abstraktni trida 'Socket'.
         // Taky to chce adekvatne prejmenovat metody
 
-        public static byte[] MessageToSocket(Message command)
+        public static byte[] MessageToSocket(Message mess)
         {
-            string jsonCommand = command.GetJson();
+            string jsonCommand = mess.GetJson();
             byte[] socket = Encoding.Unicode.GetBytes(jsonCommand);
 
             return socket;

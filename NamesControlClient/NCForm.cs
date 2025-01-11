@@ -1,10 +1,39 @@
+using NamesControlLib;
+using NamesControlLib.Messages;
+using System.ComponentModel;
+using System.Data;
+using System.Windows.Forms;
+
 namespace NamesControlClient
 {
     public partial class NCForm : Form
     {
+        private DataGrid DGrid { get; set; } = new([]);
+
         public NCForm()
         {
             InitializeComponent();
+            RefreshTable();
+        }
+
+        private void RefreshTable()
+        {
+            //ServerAnswer answer = GuiEventHandler.RefreshHandler();
+            List<DatabaseRaw> table = LoadTable();
+            BindAndUpdateTable(table);
+        }
+
+        private List<DatabaseRaw> LoadTable()
+        {
+            List<DatabaseRaw> table = GuiEventHandler.RefreshHandler().Grid;
+            return table;
+        }
+
+        private void BindAndUpdateTable(List<DatabaseRaw> table)
+        {
+            BindingList<DatabaseRaw> bindedTable = new BindingList<DatabaseRaw>(table);
+
+            DGrid = new(bindedTable);
         }
 
         private void AddBut_Click(object sender, EventArgs e)
@@ -23,17 +52,19 @@ namespace NamesControlClient
         {
             int dummyId = 42;
 
-            GuiEventHandler.RemoveNameHandler(dummyId);
+            ServerAnswer answer = GuiEventHandler.RemoveNameHandler(dummyId);
         }
 
         private void FefreshTableBut_Click(object sender, EventArgs e)
         {
-            GuiEventHandler.RefreshHandler();
+            ServerAnswer answer = GuiEventHandler.RefreshHandler();
+            BindAndUpdateTable(answer.Grid);
         }
 
-        private void NamesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void NCForm_Load(object sender, EventArgs e)
         {
-            NamesDataGridView.Rows.Add(["Joe", "Dart"]);
+            var grid = DGrid;
+            NamesDataGridView.DataSource = grid.Grid;
         }
     }
 }

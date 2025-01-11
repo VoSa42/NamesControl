@@ -12,6 +12,6 @@ namespace NamesControlLib
         public static IPAddress ServerIPAddress = IPAddress.Loopback;
         public const int Port = 1234;
 
-        public const int MaxPacketSize = 64 * 1024;
+        public const int MaxSocketSize = 64 * 1024;
     }
 }

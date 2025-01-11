@@ -29,10 +29,10 @@ namespace NamesControlServer.ServerBackend
             while (true)
             {
                 // Set buffer of static defined size to storing recieved message
-                byte[] buffer = new byte[ServerMetadata.MaxPacketSize];
+                byte[] buffer = new byte[ServerMetadata.MaxSocketSize];
 
                 // Saves connection to client, who sent a request (message) to server
-                var sender = listener.AcceptTcpClient();
+                TcpClient sender = listener.AcceptTcpClient();
 
                 // Reads the byte stream from sender and store them into buffer
                 _ = sender.GetStream().Read(buffer);
@@ -41,6 +41,8 @@ namespace NamesControlServer.ServerBackend
                 //Console.WriteLine($"Answer:\n{answer}");
 
                 // TODO: send the answer back to the client
+                byte[] answerSocket = SocketManager.MessageToSocket(answer);
+                sender.GetStream().Write(answerSocket);
             }
         }
 

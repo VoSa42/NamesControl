@@ -28,43 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            FstName = new DataGridViewButtonColumn();
-            SndName = new DataGridViewTextBoxColumn();
+            components = new System.ComponentModel.Container();
+            NamesDataGridView = new DataGridView();
+            gridBindingSource = new BindingSource(components);
+            dataGridBindingSource = new BindingSource(components);
             AddBut = new Button();
             RemoveBut = new Button();
             EditBut = new Button();
             FefreshTableBut = new Button();
             ManiPanel = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            secondNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)NamesDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridBindingSource).BeginInit();
             ManiPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // NamesDataGridView
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeight = 29;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { FstName, SndName });
-            dataGridView1.Location = new Point(12, 47);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(864, 489);
-            dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            NamesDataGridView.AllowUserToAddRows = false;
+            NamesDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NamesDataGridView.AutoGenerateColumns = false;
+            NamesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            NamesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            NamesDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, secondNameDataGridViewTextBoxColumn });
+            NamesDataGridView.DataSource = gridBindingSource;
+            NamesDataGridView.Location = new Point(12, 47);
+            NamesDataGridView.Name = "NamesDataGridView";
+            NamesDataGridView.RowHeadersWidth = 51;
+            NamesDataGridView.Size = new Size(864, 489);
+            NamesDataGridView.TabIndex = 0;
             // 
-            // FstName
+            // gridBindingSource
             // 
-            FstName.HeaderText = "First Name";
-            FstName.MinimumWidth = 6;
-            FstName.Name = "FstName";
-            FstName.UseColumnTextForButtonValue = true;
+            gridBindingSource.DataMember = "Grid";
+            gridBindingSource.DataSource = dataGridBindingSource;
             // 
-            // SndName
+            // dataGridBindingSource
             // 
-            SndName.HeaderText = "Second Name";
-            SndName.MinimumWidth = 6;
-            SndName.Name = "SndName";
+            dataGridBindingSource.DataSource = typeof(DataGrid);
             // 
             // AddBut
             // 
@@ -84,6 +88,7 @@
             RemoveBut.TabIndex = 3;
             RemoveBut.Text = "Remove Name";
             RemoveBut.UseVisualStyleBackColor = true;
+            RemoveBut.Click += RemoveBut_Click;
             // 
             // EditBut
             // 
@@ -104,15 +109,41 @@
             FefreshTableBut.TabIndex = 5;
             FefreshTableBut.Text = "Refresh Table";
             FefreshTableBut.UseVisualStyleBackColor = true;
+            FefreshTableBut.Click += FefreshTableBut_Click;
             // 
             // ManiPanel
             // 
             ManiPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ManiPanel.Controls.Add(dataGridView1);
+            ManiPanel.Controls.Add(NamesDataGridView);
             ManiPanel.Location = new Point(0, 0);
             ManiPanel.Name = "ManiPanel";
             ManiPanel.Size = new Size(888, 548);
             ManiPanel.TabIndex = 6;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // secondNameDataGridViewTextBoxColumn
+            // 
+            secondNameDataGridViewTextBoxColumn.DataPropertyName = "SecondName";
+            secondNameDataGridViewTextBoxColumn.HeaderText = "SecondName";
+            secondNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            secondNameDataGridViewTextBoxColumn.Name = "secondNameDataGridViewTextBoxColumn";
+            secondNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // NCForm
             // 
@@ -130,19 +161,26 @@
             Name = "NCForm";
             Text = "Names Control";
             WindowState = FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += NCForm_Load;
+            ((System.ComponentModel.ISupportInitialize)NamesDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridBindingSource).EndInit();
             ManiPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private DataGridView dataGridView1;
-        private DataGridViewButtonColumn FstName;
-        private DataGridViewTextBoxColumn SndName;
+        private DataGridView NamesDataGridView;
         private Button AddBut;
         private Button RemoveBut;
         private Button EditBut;
         private Button FefreshTableBut;
         private Panel ManiPanel;
+        private DataGridViewTextBoxColumn iDataGridViewTextBoxColumn;
+        private BindingSource dataGridBindingSource;
+        private BindingSource gridBindingSource;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn secondNameDataGridViewTextBoxColumn;
     }
 }

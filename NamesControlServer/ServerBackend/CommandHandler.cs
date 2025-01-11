@@ -75,7 +75,8 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer RefreshHandler(Command com)
         {
-            ServerAnswer answer = new(DatabaseManager.GetGrid());
+            ServerAnswer answer =
+                new(DatabaseManager.GetGrid());
             return answer;
         }
 
