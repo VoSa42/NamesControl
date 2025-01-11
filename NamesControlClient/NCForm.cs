@@ -18,7 +18,6 @@ namespace NamesControlClient
 
         private void RefreshTable()
         {
-            //ServerAnswer answer = GuiEventHandler.RefreshHandler();
             List<DatabaseRaw> table = LoadTable();
             BindAndUpdateTable(table);
         }
@@ -33,7 +32,7 @@ namespace NamesControlClient
         {
             BindingList<DatabaseRaw> bindedTable = new BindingList<DatabaseRaw>(table);
 
-            DGrid = new(bindedTable);
+            NamesDataGridView.DataSource = bindedTable;
         }
 
         private void AddBut_Click(object sender, EventArgs e)
@@ -63,8 +62,7 @@ namespace NamesControlClient
 
         private void NCForm_Load(object sender, EventArgs e)
         {
-            var grid = DGrid;
-            NamesDataGridView.DataSource = grid.Grid;
+            RefreshTable();
         }
     }
 }
