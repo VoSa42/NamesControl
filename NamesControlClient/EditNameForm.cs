@@ -14,9 +14,11 @@ namespace NamesControlClient
     {
         private string fstName = string.Empty;
         private string sndName = string.Empty;
+        private int id;
 
-        public EditNameForm()
+        public EditNameForm(int selectedId)
         {
+            id = selectedId;
             InitializeComponent();
         }
 
@@ -32,9 +34,7 @@ namespace NamesControlClient
 
         private void EditNameConfirm_Click(object sender, EventArgs e)
         {
-            int dummyId = 42;
-
-            GuiEventHandler.EditNameHandler(dummyId, fstName, sndName);
+            GuiEventHandler.EditNameHandler(id, fstName, sndName);
 
             this.DialogResult = DialogResult.OK;
             this.Close();

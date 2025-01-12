@@ -42,18 +42,21 @@ namespace NamesControlClient
             RefreshTable();
         }
 
-        private void EditBut_Click(object sender, EventArgs e)
-        {
-            var editNewF = new EditNameForm();
-            editNewF.Show();
-        }
-
         private void RemoveBut_Click(object sender, EventArgs e)
         {
-            int id = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
+            int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
 
-            ServerAnswer answer = GuiEventHandler.RemoveNameHandler(id);
+            ServerAnswer answer = GuiEventHandler.RemoveNameHandler(selectedId);
             BindAndUpdateTable(answer.Grid);
+        }
+
+        private void EditBut_Click(object sender, EventArgs e)
+        {
+            int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
+
+            var editNewF = new EditNameForm(selectedId);
+            editNewF.ShowDialog();
+            RefreshTable();
         }
 
         private void FefreshTableBut_Click(object sender, EventArgs e)

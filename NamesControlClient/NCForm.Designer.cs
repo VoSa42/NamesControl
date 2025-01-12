@@ -30,9 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             NamesDataGridView = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            secondNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             gridBindingSource = new BindingSource(components);
             dataGridBindingSource = new BindingSource(components);
             AddBut = new Button();
@@ -40,6 +37,9 @@
             EditBut = new Button();
             FefreshTableBut = new Button();
             ManiPanel = new Panel();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            secondNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)NamesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridBindingSource).BeginInit();
@@ -63,33 +63,6 @@
             NamesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             NamesDataGridView.Size = new Size(864, 489);
             NamesDataGridView.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            idDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            firstNameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // secondNameDataGridViewTextBoxColumn
-            // 
-            secondNameDataGridViewTextBoxColumn.DataPropertyName = "SecondName";
-            secondNameDataGridViewTextBoxColumn.HeaderText = "SecondName";
-            secondNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            secondNameDataGridViewTextBoxColumn.Name = "secondNameDataGridViewTextBoxColumn";
-            secondNameDataGridViewTextBoxColumn.ReadOnly = true;
-            secondNameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // gridBindingSource
             // 
@@ -149,6 +122,34 @@
             ManiPanel.Name = "ManiPanel";
             ManiPanel.Size = new Size(888, 548);
             ManiPanel.TabIndex = 6;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            firstNameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // secondNameDataGridViewTextBoxColumn
+            // 
+            secondNameDataGridViewTextBoxColumn.DataPropertyName = "SecondName";
+            secondNameDataGridViewTextBoxColumn.HeaderText = "SecondName";
+            secondNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            secondNameDataGridViewTextBoxColumn.Name = "secondNameDataGridViewTextBoxColumn";
+            secondNameDataGridViewTextBoxColumn.ReadOnly = true;
+            secondNameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // NCForm
             // 

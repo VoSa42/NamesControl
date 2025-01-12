@@ -42,20 +42,29 @@ namespace NamesControlServer.Database
 
         public static string? AddRecord(string firstName, string secondName)
         {
-            string query = $"INSERT INTO Names (FirstName, SecondName) VALUES ('{firstName}', '{secondName}');";
+            string query =
+                $"INSERT INTO Names (FirstName, SecondName) " +
+                $"VALUES ('{firstName}', '{secondName}');";
             RunQuery(query);
             return null;
         }
 
         public static string? RemoveRecord(int id)
         {
-            string query = $"DELETE FROM Names WHERE id={id};";
+            string query =
+                $"DELETE FROM Names " +
+                $"WHERE Id={id};";
             RunQuery(query);
             return null;
         }
 
-        public static string? EditRecord()
+        public static string? EditRecord(int id, string newFstName, string newSndName)
         {
+            string query =
+                $"UPDATE Names " +
+                $"SET FirstName='{newFstName}', SecondName='{newSndName}' " +
+                $"WHERE Id={id};";
+            RunQuery(query);
             return null;
         }
 

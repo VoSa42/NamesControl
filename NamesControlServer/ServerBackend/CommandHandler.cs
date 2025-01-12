@@ -48,28 +48,32 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer NullHandler(Command com)
         {
-            ServerAnswer answer = new("No reqest", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new("No reqest",
+                DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
 
         private static ServerAnswer AddHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.AddRecord(com.firstName, com.secondName), DatabaseManager.GetGrid());
+                new(DatabaseManager.AddRecord(com.firstName,
+                com.secondName), DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer RemoveHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.RemoveRecord(com.id), DatabaseManager.GetGrid());
+                new(DatabaseManager.RemoveRecord(com.id),
+                DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer EditHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.EditRecord(), DatabaseManager.GetGrid());
+                new(DatabaseManager.EditRecord(com.id, com.firstName, com.secondName),
+                DatabaseManager.GetGrid());
             return answer;
         }
 
@@ -82,7 +86,8 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new("Incorrect request", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new("Incorrect request",
+                DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
     }
