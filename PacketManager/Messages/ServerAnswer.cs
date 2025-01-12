@@ -13,10 +13,10 @@ namespace NamesControlLib.Messages
         public string? ErrorMessage { get; } = null;
         public List<DatabaseRaw> Grid { get; internal set; } = [];
 
-        public ServerAnswer(List<DatabaseRaw> grid, string? errorMessage = null)
+        public ServerAnswer(string? errorMessage, List<DatabaseRaw> grid)
         {
-            Grid = grid;
             ErrorMessage = errorMessage;
+            Grid = grid;
         }
 
         private void AddRaw(int id, string firstName, string secondName)

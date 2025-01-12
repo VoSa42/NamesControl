@@ -49,6 +49,7 @@
             // NamesDataGridView
             // 
             NamesDataGridView.AllowUserToAddRows = false;
+            NamesDataGridView.AllowUserToDeleteRows = false;
             NamesDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             NamesDataGridView.AutoGenerateColumns = false;
             NamesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -57,7 +58,9 @@
             NamesDataGridView.DataSource = gridBindingSource;
             NamesDataGridView.Location = new Point(12, 47);
             NamesDataGridView.Name = "NamesDataGridView";
+            NamesDataGridView.ReadOnly = true;
             NamesDataGridView.RowHeadersWidth = 51;
+            NamesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             NamesDataGridView.Size = new Size(864, 489);
             NamesDataGridView.TabIndex = 0;
             // 
@@ -68,6 +71,7 @@
             idDataGridViewTextBoxColumn.MinimumWidth = 6;
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -76,6 +80,7 @@
             firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
             firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            firstNameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // secondNameDataGridViewTextBoxColumn
             // 
@@ -84,6 +89,7 @@
             secondNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             secondNameDataGridViewTextBoxColumn.Name = "secondNameDataGridViewTextBoxColumn";
             secondNameDataGridViewTextBoxColumn.ReadOnly = true;
+            secondNameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // gridBindingSource
             // 

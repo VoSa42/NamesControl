@@ -45,50 +45,5 @@ namespace NamesControlServer.ServerBackend
                 sender.GetStream().Write(answerSocket);
             }
         }
-
-        // Just rubbish - method for testing database connection.
-        // The method has to be removed.
-        public static void ConnectDatabase()
-        {
-            Console.WriteLine("connecting to database");
-
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-                "AttachDbFilename=C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\NamesControlServer\\Database\\NamesDat.mdf;" +
-                "Integrated Security=True;" +
-                "Connect Timeout=30";
-
-            Console.WriteLine("connection string");
-
-            /*string query = "CREATE TABLE [dbo].[Names] (" +
-                "    [Id]         INT           IDENTITY (1, 1) NOT NULL," +
-                "    [FirstName]  NVARCHAR (50) NOT NULL," +
-                "    [SecondName] NVARCHAR (50) NOT NULL," +
-                "    PRIMARY KEY CLUSTERED ([Id] ASC)" +
-                ");";*/
-
-            string query = "INSERT INTO Names (FirstName, SecondName) VALUES ('John', 'Doe');";
-
-            Console.WriteLine("query");
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                Console.WriteLine("before openning");
-
-                connection.Open();
-
-                Console.WriteLine("connection opened");
-
-                /*using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Console.WriteLine(reader["Column"].ToString());
-                        }
-                    }
-                }*/
-            }
-        }
     }
 }

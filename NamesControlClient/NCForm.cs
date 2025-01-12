@@ -50,9 +50,10 @@ namespace NamesControlClient
 
         private void RemoveBut_Click(object sender, EventArgs e)
         {
-            int dummyId = 42;
+            int id = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
 
-            ServerAnswer answer = GuiEventHandler.RemoveNameHandler(dummyId);
+            ServerAnswer answer = GuiEventHandler.RemoveNameHandler(id);
+            BindAndUpdateTable(answer.Grid);
         }
 
         private void FefreshTableBut_Click(object sender, EventArgs e)

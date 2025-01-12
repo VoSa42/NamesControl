@@ -48,41 +48,41 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer NullHandler(Command com)
         {
-            ServerAnswer answer = new(DatabaseManager.GetGrid(), "No reqest");     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new("No reqest", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
 
         private static ServerAnswer AddHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.GetGrid(), DatabaseManager.AddRecord(com.firstName, com.secondName));
+                new(DatabaseManager.AddRecord(com.firstName, com.secondName), DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer RemoveHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.GetGrid(), DatabaseManager.RemoveRecord());
+                new(DatabaseManager.RemoveRecord(com.id), DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer EditHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.GetGrid(), DatabaseManager.EditRecord());
+                new(DatabaseManager.EditRecord(), DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer RefreshHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.GetGrid());
+                new("", DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new(DatabaseManager.GetGrid(), "Incorrect request");     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new("Incorrect request", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
     }

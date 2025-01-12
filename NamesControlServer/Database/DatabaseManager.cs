@@ -47,8 +47,10 @@ namespace NamesControlServer.Database
             return null;
         }
 
-        public static string? RemoveRecord()
+        public static string? RemoveRecord(int id)
         {
+            string query = $"DELETE FROM Names WHERE id={id};";
+            RunQuery(query);
             return null;
         }
 
