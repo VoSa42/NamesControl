@@ -2,22 +2,22 @@
 
 namespace NamesControlLib.Messages
 {
-    public class Command(CommandType _command,
-        string _firstName = "",
-        string _secondName = "",
-        int _id = -1) : Message
+    public class Command(CommandType command,
+        string firstName = "",
+        string secondName = "",
+        int id = -1) : Message
     {
-        public CommandType command { get; set; } = _command;
-        public string firstName { get; set; } = _firstName;
-        public string secondName { get; set; } = _secondName;
-        public int id { get; set; } = _id;
+        public CommandType CommandName { get; set; } = command;
+        public string FirstName { get; set; } = firstName;
+        public string SecondName { get; set; } = secondName;
+        public int Id { get; set; } = id;
 
         public override string ToString()
         {
-            return command + " "
-                + firstName + " "
-                + secondName + " "
-                + id + " ";
+            return CommandName + " "
+                + FirstName + " "
+                + SecondName + " "
+                + Id + " ";
         }
     }
 }

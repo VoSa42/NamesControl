@@ -7,9 +7,6 @@ namespace NamesControlLib
 {
     public static class SocketManager
     {
-        // Misto 'Command' bude genericky typ nebo abstraktni trida 'Socket'.
-        // Taky to chce adekvatne prejmenovat metody
-
         public static byte[] MessageToSocket(Message mess)
         {
             string jsonCommand = mess.GetJson();

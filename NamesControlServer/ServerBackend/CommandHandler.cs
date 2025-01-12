@@ -16,32 +16,19 @@ namespace NamesControlServer.ServerBackend
     {
         public static ServerAnswer CommandExecutor(byte[] buffer)
         {
-            Command com = (Command)SocketManager.SocketToMessage<Command>(buffer);
-            Console.WriteLine(com);
+            Command com = SocketManager.SocketToMessage<Command>(buffer);
 
-            CommandHandlerFunc comHandler = new(NullHandler);
+            Console.WriteLine(com);     // log
 
-            switch (com.command)
+            CommandHandlerFunc comHandler = com.CommandName switch
             {
-                case CommandType.None:
-                    comHandler = new(NullHandler);
-                    break;
-                case CommandType.Add:
-                    comHandler = new(AddHandler);
-                    break;
-                case CommandType.Remove:
-                    comHandler = new(RemoveHandler);
-                    break;
-                case CommandType.Edit:
-                    comHandler = new(EditHandler);
-                    break;
-                case CommandType.Refresh:
-                    comHandler = new(RefreshHandler);
-                    break;
-                default:
-                    comHandler = new(IncorrectInputHandler);
-                    break;
-            }
+                CommandType.None => new(NullHandler),
+                CommandType.Add => new(AddHandler),
+                CommandType.Remove => new(RemoveHandler),
+                CommandType.Edit => new(EditHandler),
+                CommandType.Refresh => new(RefreshHandler),
+                _ => new(IncorrectInputHandler),
+            };
 
             return comHandler(com);
         }
@@ -56,15 +43,15 @@ namespace NamesControlServer.ServerBackend
         private static ServerAnswer AddHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.AddRecord(com.firstName,
-                com.secondName), DatabaseManager.GetGrid());
+                new(DatabaseManager.AddRecord(com.FirstName,
+                com.SecondName), DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer RemoveHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.RemoveRecord(com.id),
+                new(DatabaseManager.RemoveRecord(com.Id),
                 DatabaseManager.GetGrid());
             return answer;
         }
@@ -72,7 +59,7 @@ namespace NamesControlServer.ServerBackend
         private static ServerAnswer EditHandler(Command com)
         {
             ServerAnswer answer =
-                new(DatabaseManager.EditRecord(com.id, com.firstName, com.secondName),
+                new(DatabaseManager.EditRecord(com.Id, com.FirstName, com.SecondName),
                 DatabaseManager.GetGrid());
             return answer;
         }
@@ -80,7 +67,7 @@ namespace NamesControlServer.ServerBackend
         private static ServerAnswer RefreshHandler(Command com)
         {
             ServerAnswer answer =
-                new("", DatabaseManager.GetGrid());
+                new(null, DatabaseManager.GetGrid());
             return answer;
         }
 

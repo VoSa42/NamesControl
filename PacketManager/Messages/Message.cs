@@ -9,8 +9,6 @@ namespace NamesControlLib.Messages
 {
     public abstract class Message
     {
-        public Message() { }
-
         public string GetJson()
         {
             return JsonConvert.SerializeObject(this);

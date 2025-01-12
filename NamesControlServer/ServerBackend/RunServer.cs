@@ -16,14 +16,11 @@ namespace NamesControlServer.ServerBackend
     {
         public static void Run()
         {
-            Console.WriteLine("run server");
-
-            // Just testing... unnecessary method
-            // ConnectDatabase();
+            Console.WriteLine("run server");        // log
 
             // Set up and activate listener to wait and recieving message from client
-            IPEndPoint ipep = new IPEndPoint(ServerMetadata.ServerIPAddress, ServerMetadata.Port);
-            TcpListener listener = new TcpListener(ipep);
+            IPEndPoint ipep = new(ServerMetadata.ServerIPAddress, ServerMetadata.Port);
+            TcpListener listener = new(ipep);
             listener.Start();
 
             while (true)
@@ -40,7 +37,6 @@ namespace NamesControlServer.ServerBackend
                 ServerAnswer answer = CommandHandler.CommandExecutor(buffer);
                 //Console.WriteLine($"Answer:\n{answer}");
 
-                // TODO: send the answer back to the client
                 byte[] answerSocket = SocketManager.MessageToSocket(answer);
                 sender.GetStream().Write(answerSocket);
             }

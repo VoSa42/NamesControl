@@ -8,16 +8,10 @@ using Microsoft.Data.SqlClient;
 
 namespace NamesControlLib.Messages
 {
-    public class ServerAnswer : Message
+    public class ServerAnswer(string? errorMessage, List<DatabaseRaw> grid) : Message
     {
-        public string? ErrorMessage { get; } = null;
-        public List<DatabaseRaw> Grid { get; internal set; } = [];
-
-        public ServerAnswer(string? errorMessage, List<DatabaseRaw> grid)
-        {
-            ErrorMessage = errorMessage;
-            Grid = grid;
-        }
+        public string? ErrorMessage { get; } = errorMessage;
+        public List<DatabaseRaw> Grid { get; internal set; } = grid;
 
         private void AddRaw(int id, string firstName, string secondName)
         {

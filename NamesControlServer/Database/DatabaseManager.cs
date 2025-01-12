@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 using NamesControlLib;
 using NamesControlLib.Messages;
@@ -13,31 +14,43 @@ namespace NamesControlServer.Database
 {
     internal static class DatabaseManager
     {
+        private static string? GetThisFilePath([CallerFilePath] string? path = null)
+        {
+            return path;
+        }
 
         private static SqlConnection OpenConnection()
         {
-            // TODO: modify AttachDbFilename to relative path
-            var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Admin\\Documents\\prace\\eprin\\pripadovka\\NamesControl\\NamesControlServer\\Database\\NamesDat.mdf;Integrated Security=True;Connect Timeout=30";
+            string? path = GetThisFilePath();
+            string? directory = Path.GetDirectoryName(path);
 
-            SqlConnection con = new(connectionString);
-            con.Open();
+            SqlConnectionStringBuilder conStringBuilder = new()
+            {
+                DataSource = @"(LocalDB)\MSSQLLocalDB",
+                InitialCatalog = $"{directory}\\NamesDat.mdf",
+                IntegratedSecurity = true,
+                ConnectTimeout = 30
+            };
 
-            return con;
+            SqlConnection connection = new(conStringBuilder.ConnectionString);
+            connection.Open();
+
+            return connection;
         }
 
-        private static void CloseConnection(SqlConnection con)
+        private static void CloseConnection(SqlConnection connection)
         {
-            con.Close();
+            connection.Close();
         }
 
         private static void RunQuery(string query)
         {
-            SqlConnection con = OpenConnection();
+            SqlConnection connection = OpenConnection();
 
-            var command = new SqlCommand(query, con);
-            var reader = command.ExecuteReader();
+            SqlCommand command = new(query, connection);
+            _ = command.ExecuteReader();
 
-            CloseConnection(con);
+            CloseConnection(connection);
         }
 
         public static string? AddRecord(string firstName, string secondName)
@@ -68,8 +81,8 @@ namespace NamesControlServer.Database
             return null;
         }
 
-        /** Maybe when the list would be passed as a reference parameter
-         * and in the method body would be just modyfied, it wouldd be clearer
+        /** The query maybe should be ran using the RunQuery method.
+         * The problem is return value, this method needs specific one
          */
         public static List<DatabaseRaw> GetGrid()
         {
@@ -79,17 +92,15 @@ namespace NamesControlServer.Database
 
             string query = "SELECT Id, FirstName, SecondName FROM Names";
 
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new(query, connection))
             {
-                using (SqlDataReader reader = command.ExecuteReader())
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        int id = reader.GetInt32(0);
-                        string fstName = reader.GetString(1);
-                        string sndName = reader.GetString(2);
-                        grid.Add(new(id, fstName, sndName));
-                    }
+                    int id = reader.GetInt32(0);
+                    string fstName = reader.GetString(1);
+                    string sndName = reader.GetString(2);
+                    grid.Add(new(id, fstName, sndName));
                 }
             }
 

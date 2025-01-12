@@ -9,13 +9,8 @@ using NamesControlLib;
 
 namespace NamesControlClient
 {
-    public class DataGrid
+    public class DataGrid(BindingList<DatabaseRaw> grid)
     {
-        public BindingList<DatabaseRaw> Grid { get; set; } = new BindingList<DatabaseRaw>();
-
-        public DataGrid(BindingList<DatabaseRaw> grid)
-        {
-            Grid = grid;
-        }
+        public BindingList<DatabaseRaw> Grid { get; set; } = grid;
     }
 }
