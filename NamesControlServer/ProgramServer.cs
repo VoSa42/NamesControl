@@ -5,9 +5,9 @@ namespace NamesControlServer
 {
     public class ProgramServer
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            ServerBackend.RunServer.Run();
+            await ServerBackend.RunServer.Run();
         }
     }
 }

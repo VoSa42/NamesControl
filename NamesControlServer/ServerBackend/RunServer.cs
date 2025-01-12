@@ -14,7 +14,7 @@ namespace NamesControlServer.ServerBackend
 {
     internal static class RunServer
     {
-        public static void Run()
+        public static async Task Run()
         {
             Console.WriteLine("run server");        // log
 
@@ -29,16 +29,16 @@ namespace NamesControlServer.ServerBackend
                 byte[] buffer = new byte[ServerMetadata.MaxSocketSize];
 
                 // Saves connection to client, who sent a request (message) to server
-                TcpClient sender = listener.AcceptTcpClient();
+                TcpClient sender = await listener.AcceptTcpClientAsync();
 
                 // Reads the byte stream from sender and store them into buffer
-                _ = sender.GetStream().Read(buffer);
+                _ = await sender.GetStream().ReadAsync(buffer);
 
-                ServerAnswer answer = CommandHandler.CommandExecutor(buffer);
+                ServerAnswer answer = CommandHandler.ExecuteCommand(buffer);
                 //Console.WriteLine($"Answer:\n{answer}");
 
                 byte[] answerSocket = SocketManager.MessageToSocket(answer);
-                sender.GetStream().Write(answerSocket);
+                await sender.GetStream().WriteAsync(answerSocket);
             }
         }
     }
