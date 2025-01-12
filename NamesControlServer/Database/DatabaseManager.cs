@@ -33,6 +33,7 @@ namespace NamesControlServer.Database
             };
 
             SqlConnection connection = new(conStringBuilder.ConnectionString);
+
             connection.Open();
 
             return connection;

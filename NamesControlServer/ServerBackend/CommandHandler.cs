@@ -14,7 +14,7 @@ namespace NamesControlServer.ServerBackend
 
     internal class CommandHandler
     {
-        public static ServerAnswer CommandExecutor(byte[] buffer)
+        public static ServerAnswer ExecuteCommand(byte[] buffer)
         {
             Command com = SocketManager.SocketToMessage<Command>(buffer);
 
@@ -35,46 +35,40 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer NullHandler(Command com)
         {
-            ServerAnswer answer = new("No reqest",
-                DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new("No request", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
 
         private static ServerAnswer AddHandler(Command com)
         {
-            ServerAnswer answer =
-                new(DatabaseManager.AddRecord(com.FirstName,
-                com.SecondName), DatabaseManager.GetGrid());
+            ServerAnswer answer = new(DatabaseManager.AddRecord(com.FirstName, com.SecondName),
+                DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer RemoveHandler(Command com)
         {
-            ServerAnswer answer =
-                new(DatabaseManager.RemoveRecord(com.Id),
+            ServerAnswer answer = new(DatabaseManager.RemoveRecord(com.Id),
                 DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer EditHandler(Command com)
         {
-            ServerAnswer answer =
-                new(DatabaseManager.EditRecord(com.Id, com.FirstName, com.SecondName),
+            ServerAnswer answer = new(DatabaseManager.EditRecord(com.Id, com.FirstName, com.SecondName),
                 DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer RefreshHandler(Command com)
         {
-            ServerAnswer answer =
-                new(null, DatabaseManager.GetGrid());
+            ServerAnswer answer = new(null, DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new("Incorrect request",
-                DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new("Incorrect request", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
     }
