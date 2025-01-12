@@ -12,38 +12,44 @@ namespace NamesControlClient
 {
     public partial class EditNameForm : Form
     {
-        private string fstName = string.Empty;
-        private string sndName = string.Empty;
-        private int id;
+        private string FstName { get; set; } = string.Empty;
+        private string SndName { get; set; } = string.Empty;
+        private int Id {  get; set; }
 
-        public EditNameForm(int selectedId)
+        public EditNameForm(int selectedId, string selectedFstName, string selectedSndName)
         {
-            id = selectedId;
+            Id = selectedId;
+            FstName = selectedFstName;
+            SndName = selectedSndName;
+
             InitializeComponent();
+
+            FillFstName.Text = FstName;
+            FillSndName.Text = SndName;
         }
 
         private void FillFstName_TextChanged(object sender, EventArgs e)
         {
-            fstName = FillFstName.Text;
+            FstName = FillFstName.Text;
         }
 
         private void FillSndName_TextChanged(object sender, EventArgs e)
         {
-            sndName = FillSndName.Text;
+            SndName = FillSndName.Text;
         }
 
         private void EditNameConfirm_Click(object sender, EventArgs e)
         {
-            GuiEventHandler.EditNameHandler(id, fstName, sndName);
+            GuiEventHandler.EditNameHandler(Id, FstName, SndName);
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelBut_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

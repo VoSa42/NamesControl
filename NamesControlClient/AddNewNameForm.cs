@@ -12,8 +12,8 @@ namespace NamesControlClient
 {
     public partial class AddNewNameForm : Form
     {
-        private string fstName = string.Empty;
-        private string sndName = string.Empty;
+        private string FstName = string.Empty;
+        private string SndName = string.Empty;
 
         public AddNewNameForm()
         {
@@ -22,17 +22,17 @@ namespace NamesControlClient
 
         private void FillFstName_TextChanged(object sender, EventArgs e)
         {
-            fstName = FillFstName.Text;
+            FstName = FillFstName.Text;
         }
 
         private void FillSndName_TextChanged(object sender, EventArgs e)
         {
-            sndName = FillSndName.Text;
+            SndName = FillSndName.Text;
         }
 
         private void AddNameConfirm_Click(object sender, EventArgs e)
         {
-            var v = GuiEventHandler.AddNewNameHandler(fstName, sndName);
+            var v = GuiEventHandler.AddNewNameHandler(FstName, SndName);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

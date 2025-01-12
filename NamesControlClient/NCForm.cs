@@ -6,32 +6,30 @@ using System.Windows.Forms;
 
 namespace NamesControlClient
 {
+    using Table = List<DatabaseRaw>;
+    using BindedTable = BindingList<DatabaseRaw>;
     public partial class NCForm : Form
     {
-        //protected DataGrid DGrid { get; set; } = new([]);
-
         public NCForm()
         {
             InitializeComponent();
-            RefreshTable();
         }
 
         private void RefreshTable()
         {
-            List<DatabaseRaw> table = LoadTable();
+            Table table = LoadTable();
             BindAndUpdateTable(table);
         }
 
-        private List<DatabaseRaw> LoadTable()
+        private static Table LoadTable()
         {
-            List<DatabaseRaw> table = GuiEventHandler.RefreshHandler().Grid;
+            Table table = GuiEventHandler.RefreshHandler().Grid;
             return table;
         }
 
-        private void BindAndUpdateTable(List<DatabaseRaw> table)
+        private void BindAndUpdateTable(Table table)
         {
-            BindingList<DatabaseRaw> bindedTable = new BindingList<DatabaseRaw>(table);
-
+            BindedTable bindedTable = new(table);
             NamesDataGridView.DataSource = bindedTable;
         }
 
@@ -39,6 +37,13 @@ namespace NamesControlClient
         {
             var addNewF = new AddNewNameForm();
             addNewF.ShowDialog();
+
+            // Useless extra requesting server
+            // -> TODO: get grid from server answer
+            //      - problem is that the ansver is lost in 'addNewF' dialog
+            //
+            // Note: On the other hand this can be usefull when 'Cancel' button is clicked,
+            // the dataGrid is updated anyway
             RefreshTable();
         }
 
@@ -53,9 +58,18 @@ namespace NamesControlClient
         private void EditBut_Click(object sender, EventArgs e)
         {
             int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
+            string selectedFstName = (string)NamesDataGridView.CurrentRow.Cells[1].Value;
+            string selectedSndName = (string)NamesDataGridView.CurrentRow.Cells[2].Value;
 
-            var editNewF = new EditNameForm(selectedId);
+            var editNewF = new EditNameForm(selectedId, selectedFstName, selectedSndName);
             editNewF.ShowDialog();
+
+            // Useless extra requesting server
+            // -> TODO: get grid from server answer
+            //      - problem is that the ansver is lost in 'editNewF' dialog
+            //
+            // Note: On the other hand this can be usefull when 'Cancel' button is clicked,
+            // the dataGrid is updated anyway
             RefreshTable();
         }
 
