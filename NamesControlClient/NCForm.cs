@@ -1,3 +1,4 @@
+using NamesControlClient.Errors;
 using NamesControlLib;
 using NamesControlLib.Messages;
 using System.ComponentModel;
@@ -21,16 +22,19 @@ namespace NamesControlClient
             BindAndUpdateTable(table);
         }
 
-        private static Table LoadTable()
+        private static Table? LoadTable()
         {
             Table table = GuiEventHandler.RefreshHandler().Grid;
             return table;
         }
 
-        private void BindAndUpdateTable(Table table)
+        private void BindAndUpdateTable(Table? table)
         {
-            BindedTable bindedTable = new(table);
-            NamesDataGridView.DataSource = bindedTable;
+            if (table != null)
+            {
+                BindedTable bindedTable = new(table);
+                NamesDataGridView.DataSource = bindedTable;
+            }
         }
 
         private void AddBut_Click(object sender, EventArgs e)
@@ -52,6 +56,13 @@ namespace NamesControlClient
             int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
 
             ServerAnswer answer = GuiEventHandler.RemoveNameHandler(selectedId);
+
+            ErrorType error = answer.ErrorType;
+            if (error == ErrorType.RecordNotExist)
+            {
+                MessageBox.Show(ErrorMessages.GetErrorMessage(error), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             BindAndUpdateTable(answer.Grid);
         }
 

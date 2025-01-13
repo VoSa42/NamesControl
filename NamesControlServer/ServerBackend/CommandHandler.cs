@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NamesControlClient.Errors;
 using NamesControlLib;
 using NamesControlLib.Messages;
 using NamesControlServer.Database;
@@ -35,7 +36,7 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer NullHandler(Command com)
         {
-            ServerAnswer answer = new("No request", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
 
@@ -62,13 +63,13 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer RefreshHandler(Command com)
         {
-            ServerAnswer answer = new(null, DatabaseManager.GetGrid());
+            ServerAnswer answer = new(ErrorType.None, DatabaseManager.GetGrid());
             return answer;
         }
 
         private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new("Incorrect request", DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
             return answer;
         }
     }

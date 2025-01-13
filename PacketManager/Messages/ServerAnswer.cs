@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 using System.Runtime;
 using Microsoft.Data.SqlClient;
 
+using NamesControlLib;
+using NamesControlClient.Errors;
+
 namespace NamesControlLib.Messages
 {
-    public class ServerAnswer(string? errorMessage, List<DatabaseRaw> grid) : Message
+    public class ServerAnswer(ErrorType errorType, List<DatabaseRaw>? grid) : Message
     {
-        public string? ErrorMessage { get; } = errorMessage;
-        public List<DatabaseRaw> Grid { get; internal set; } = grid;
-
-        private void AddRaw(int id, string firstName, string secondName)
-        {
-            Grid.Add(new(id, firstName, secondName));
-        }
+        public ErrorType ErrorType { get; set; } = ErrorType.None;
+        public List<DatabaseRaw>? Grid { get; set; } = grid;
 
         public override string ToString()
         {
             string result = "";
-            if (ErrorMessage != null)
+            if (errorType != ErrorType.None)
             {
-                result += "Error: " + ErrorMessage;
+                result += $"Error: {errorType}\n";
             }
+
+            if (Grid == null) { return result; }
 
             int cellSize = 11;
             foreach (var row in Grid)

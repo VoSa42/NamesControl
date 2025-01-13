@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 
 using NamesControlLib;
 using NamesControlLib.Messages;
+using NamesControlClient.Errors;
 
 namespace NamesControlServer.Database
 {
@@ -49,37 +50,37 @@ namespace NamesControlServer.Database
             SqlConnection connection = OpenConnection();
 
             SqlCommand command = new(query, connection);
-            _ = command.ExecuteReader();
+            var reader = command.ExecuteReader();
 
             CloseConnection(connection);
         }
 
-        public static string? AddRecord(string firstName, string secondName)
+        public static ErrorType AddRecord(string firstName, string secondName)
         {
             string query =
                 $"INSERT INTO Names (FirstName, SecondName) " +
                 $"VALUES ('{firstName}', '{secondName}');";
             RunQuery(query);
-            return null;
+            return ErrorType.None;
         }
 
-        public static string? RemoveRecord(int id)
+        public static ErrorType RemoveRecord(int id)
         {
             string query =
                 $"DELETE FROM Names " +
                 $"WHERE Id={id};";
             RunQuery(query);
-            return null;
+            return ErrorType.None;
         }
 
-        public static string? EditRecord(int id, string newFstName, string newSndName)
+        public static ErrorType EditRecord(int id, string newFstName, string newSndName)
         {
             string query =
                 $"UPDATE Names " +
                 $"SET FirstName='{newFstName}', SecondName='{newSndName}' " +
                 $"WHERE Id={id};";
             RunQuery(query);
-            return null;
+            return ErrorType.None;
         }
 
         /** The query maybe should be ran using the RunQuery method.

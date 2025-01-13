@@ -4,9 +4,10 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-
+using NamesControlClient.Errors;
 using NamesControlLib;
 using NamesControlLib.Messages;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NamesControlClient
 {
@@ -14,20 +15,30 @@ namespace NamesControlClient
     {
         private static ServerAnswer ProcessCommand(Command command)
         {
-            TcpClient client = new(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
-            NetworkStream stream = client.GetStream();
+            ServerAnswer answer = new(ErrorType.None, null);
 
-            byte[] messageToSend = SocketManager.MessageToSocket(command);
-            stream.Write(messageToSend);
+            try
+            {
+                TcpClient client = new(ServerMetadata.ServerIPAddress.ToString(), ServerMetadata.Port);
+                NetworkStream stream = client.GetStream();
 
-            byte[] recievedMessage = new byte[ServerMetadata.MaxSocketSize]; 
+                byte[] messageToSend = SocketManager.MessageToSocket(command);
+                stream.Write(messageToSend);
 
-            _ = stream.Read(recievedMessage);
+                byte[] recievedMessage = new byte[ServerMetadata.MaxSocketSize];
 
-            ServerAnswer answer = SocketManager.SocketToMessage<ServerAnswer>(recievedMessage);
+                _ = stream.Read(recievedMessage);
 
-            stream.Dispose();
-            client.Close();
+                answer = SocketManager.SocketToMessage<ServerAnswer>(recievedMessage);
+
+                stream.Dispose();
+                client.Close();
+            }
+            catch (Exception)
+            {
+                answer = new(ErrorType.ServerNotResponse, null);
+                MessageBox.Show(ErrorMessages.GetErrorMessage(ErrorType.ServerNotResponse), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             return answer;
         }

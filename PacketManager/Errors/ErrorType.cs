@@ -8,6 +8,7 @@ namespace NamesControlClient.Errors
 {
     public enum ErrorType
     {
+        None,
         ServerNotResponse,
         RecordNotExist,
         InvalidQuery

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NamesControlClient.Errors;
+using NamesControlLib.Messages;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +42,13 @@ namespace NamesControlClient
 
         private void EditNameConfirm_Click(object sender, EventArgs e)
         {
-            GuiEventHandler.EditNameHandler(Id, FstName, SndName);
+            ServerAnswer answer = GuiEventHandler.EditNameHandler(Id, FstName, SndName);
+            
+            ErrorType error = answer.ErrorType;
+            if (error == ErrorType.RecordNotExist)
+            {
+                MessageBox.Show(ErrorMessages.GetErrorMessage(error), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             DialogResult = DialogResult.OK;
             Close();
