@@ -7,9 +7,9 @@ namespace NamesControlLib
 {
     public static class SocketManager
     {
-        public static byte[] MessageToSocket(Message mess)
+        public static byte[] MessageToSocket<messageType>(messageType mess)
         {
-            string jsonCommand = mess.GetJson();
+            string jsonCommand = JsonConvert.SerializeObject(mess);
             byte[] socket = Encoding.Unicode.GetBytes(jsonCommand);
 
             return socket;

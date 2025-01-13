@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
 
 using NamesControlLib;
 using NamesControlLib.Messages;
@@ -16,8 +10,6 @@ namespace NamesControlServer.ServerBackend
     {
         public static async Task Run()
         {
-            Console.WriteLine("run server");        // log
-
             // Set up and activate listener to wait and recieving message from client
             IPEndPoint ipep = new(ServerMetadata.ServerIPAddress, ServerMetadata.Port);
             TcpListener listener = new(ipep);
@@ -35,9 +27,8 @@ namespace NamesControlServer.ServerBackend
                 _ = await sender.GetStream().ReadAsync(buffer);
 
                 ServerAnswer answer = CommandHandler.ExecuteCommand(buffer);
-                //Console.WriteLine($"Answer:\n{answer}");
 
-                byte[] answerSocket = SocketManager.MessageToSocket(answer);
+                byte[] answerSocket = SocketManager.MessageToSocket<ServerAnswer>(answer);
                 await sender.GetStream().WriteAsync(answerSocket);
             }
         }

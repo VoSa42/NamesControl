@@ -1,9 +1,7 @@
-using NamesControlClient.Errors;
 using NamesControlLib;
+using NamesControlLib.Errors;
 using NamesControlLib.Messages;
 using System.ComponentModel;
-using System.Data;
-using System.Windows.Forms;
 
 namespace NamesControlClient
 {
@@ -61,6 +59,7 @@ namespace NamesControlClient
             if (error == ErrorType.RecordNotExist)
             {
                 ErrorDialog errorDialog = new(ErrorMessages.GetErrorMessage(answer.ErrorType));
+                errorDialog.ShowDialog();
             }
 
             BindAndUpdateTable(answer.Grid);

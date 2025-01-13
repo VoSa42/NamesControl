@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using NamesControlClient.Errors;
-using NamesControlLib;
+﻿using NamesControlLib;
+using NamesControlLib.Errors;
 using NamesControlLib.Messages;
 using NamesControlServer.Database;
 
@@ -18,8 +12,6 @@ namespace NamesControlServer.ServerBackend
         public static ServerAnswer ExecuteCommand(byte[] buffer)
         {
             Command com = SocketManager.SocketToMessage<Command>(buffer);
-
-            Console.WriteLine(com);     // log
 
             CommandHandlerFunc comHandler = com.CommandName switch
             {
@@ -36,7 +28,7 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer NullHandler(Command com)
         {
-            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());
             return answer;
         }
 
@@ -69,7 +61,7 @@ namespace NamesControlServer.ServerBackend
 
         private static ServerAnswer IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());     // This should throw an exception instead of error message (because this should not happen)
+            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());
             return answer;
         }
     }

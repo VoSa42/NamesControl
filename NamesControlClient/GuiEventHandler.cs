@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using NamesControlClient.Errors;
+﻿using System.Net.Sockets;
 using NamesControlLib;
+using NamesControlLib.Errors;
 using NamesControlLib.Messages;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NamesControlClient
 {

@@ -1,4 +1,4 @@
-﻿using NamesControlClient.Errors;
+﻿using NamesControlLib.Errors;
 using NamesControlLib.Messages;
 using System;
 using System.Collections.Generic;
@@ -47,7 +47,8 @@ namespace NamesControlClient
             ErrorType error = answer.ErrorType;
             if (error == ErrorType.RecordNotExist)
             {
-                ErrorDialog errorDialog = new(ErrorMessages.GetErrorMessage(answer.ErrorType));
+                ErrorDialog errorDialog = new(ErrorMessages.GetErrorMessage(error));
+                ShowDialog(errorDialog);
             }
 
             DialogResult = DialogResult.OK;

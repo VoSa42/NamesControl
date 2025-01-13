@@ -34,21 +34,22 @@
             // 
             // ErrorMessage
             // 
-            ErrorMessage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ErrorMessage.Anchor = AnchorStyles.None;
             ErrorMessage.AutoSize = true;
-            ErrorMessage.Location = new Point(226, 63);
+            ErrorMessage.Location = new Point(49, 61);
             ErrorMessage.Name = "ErrorMessage";
             ErrorMessage.Size = new Size(41, 20);
             ErrorMessage.TabIndex = 0;
             ErrorMessage.Text = "Error";
-            ErrorMessage.TextAlign = ContentAlignment.MiddleCenter;
+            ErrorMessage.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // Ok
             // 
-            Ok.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            Ok.Location = new Point(201, 131);
+            Ok.Anchor = AnchorStyles.None;
+            Ok.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            Ok.Location = new Point(225, 131);
             Ok.Name = "Ok";
-            Ok.Size = new Size(94, 29);
+            Ok.Size = new Size(94, 30);
             Ok.TabIndex = 1;
             Ok.Text = "Ok";
             Ok.UseVisualStyleBackColor = true;
@@ -58,7 +59,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(496, 225);
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(544, 225);
             Controls.Add(Ok);
             Controls.Add(ErrorMessage);
             Name = "ErrorDialog";

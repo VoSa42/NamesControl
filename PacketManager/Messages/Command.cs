@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace NamesControlLib.Messages
+﻿namespace NamesControlLib.Messages
 {
     public class Command(CommandType commandName,
         string firstName = "",

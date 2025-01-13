@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
 using NamesControlLib;
-using NamesControlLib.Messages;
-using NamesControlClient.Errors;
+using NamesControlLib.Errors;
 
 namespace NamesControlServer.Database
 {
@@ -32,7 +25,6 @@ namespace NamesControlServer.Database
                 IntegratedSecurity = true,
                 ConnectTimeout = 30
             };
-
             SqlConnection connection = new(conStringBuilder.ConnectionString);
 
             connection.Open();
@@ -45,14 +37,20 @@ namespace NamesControlServer.Database
             connection.Close();
         }
 
-        private static void RunQuery(string query)
+        private static int RunQuery(string query)
         {
             SqlConnection connection = OpenConnection();
 
             SqlCommand command = new(query, connection);
             var reader = command.ExecuteReader();
 
+            int recordsAffected = reader.RecordsAffected;
+
             CloseConnection(connection);
+
+            Console.WriteLine(recordsAffected);
+
+            return recordsAffected;
         }
 
         public static ErrorType AddRecord(string firstName, string secondName)
@@ -69,7 +67,12 @@ namespace NamesControlServer.Database
             string query =
                 $"DELETE FROM Names " +
                 $"WHERE Id={id};";
-            RunQuery(query);
+            int recordAffected = RunQuery(query);
+
+            if(recordAffected == 0)
+            {
+                return ErrorType.RecordNotExist;
+            }
             return ErrorType.None;
         }
 
@@ -79,7 +82,12 @@ namespace NamesControlServer.Database
                 $"UPDATE Names " +
                 $"SET FirstName='{newFstName}', SecondName='{newSndName}' " +
                 $"WHERE Id={id};";
-            RunQuery(query);
+            int recordAffected = RunQuery(query);
+
+            if (recordAffected == 0)
+            {
+                return ErrorType.RecordNotExist;
+            }
             return ErrorType.None;
         }
 

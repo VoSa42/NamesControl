@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NamesControlClient.Errors
+﻿namespace NamesControlLib.Errors
 {
     using ErrorList = List<Tuple<ErrorType, string?>>;
 

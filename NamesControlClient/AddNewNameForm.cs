@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace NamesControlClient
+﻿namespace NamesControlClient
 {
     public partial class AddNewNameForm : Form
     {
@@ -32,15 +22,15 @@ namespace NamesControlClient
 
         private void AddNameConfirm_Click(object sender, EventArgs e)
         {
-            var v = GuiEventHandler.AddNewNameHandler(FstName, SndName);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            _ = GuiEventHandler.AddNewNameHandler(FstName, SndName);
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelBut_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

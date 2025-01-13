@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NamesControlLib
+﻿namespace NamesControlLib
 {
     public readonly struct DatabaseRaw(int id, string firstName, string secondName)
     {
