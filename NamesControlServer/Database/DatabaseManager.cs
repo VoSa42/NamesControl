@@ -48,8 +48,6 @@ namespace NamesControlServer.Database
 
             CloseConnection(connection);
 
-            Console.WriteLine(recordsAffected);
-
             return recordsAffected;
         }
 
@@ -94,11 +92,11 @@ namespace NamesControlServer.Database
         /** The query maybe should be ran using the RunQuery method.
          * The problem is return value, this method needs specific one
          */
-        public static List<DatabaseRaw> GetGrid()
+        public static List<NamesTableRow> GetTable()
         {
             SqlConnection connection = OpenConnection();
 
-            List<DatabaseRaw> grid = [];
+            List<NamesTableRow> table = [];
 
             string query = "SELECT Id, FirstName, SecondName FROM Names";
 
@@ -110,13 +108,13 @@ namespace NamesControlServer.Database
                     int id = reader.GetInt32(0);
                     string fstName = reader.GetString(1);
                     string sndName = reader.GetString(2);
-                    grid.Add(new(id, fstName, sndName));
+                    table.Add(new(id, fstName, sndName));
                 }
             }
 
             CloseConnection(connection);
 
-            return grid;
+            return table;
         }
     }
 }

@@ -5,17 +5,16 @@ using NamesControlServer.Database;
 
 namespace NamesControlServer.ServerBackend
 {
-    internal delegate ServerAnswer CommandHandlerFunc(Command com);
+    internal delegate ServerResponse CommandHandlerFunc(Command com);
 
     internal class CommandHandler
     {
-        public static ServerAnswer ExecuteCommand(byte[] buffer)
+        public static ServerResponse ExecuteCommand(byte[] buffer)
         {
             Command com = SocketManager.SocketToMessage<Command>(buffer);
 
             CommandHandlerFunc comHandler = com.CommandName switch
             {
-                CommandType.None => new(NullHandler),
                 CommandType.Add => new(AddHandler),
                 CommandType.Remove => new(RemoveHandler),
                 CommandType.Edit => new(EditHandler),
@@ -26,42 +25,36 @@ namespace NamesControlServer.ServerBackend
             return comHandler(com);
         }
 
-        private static ServerAnswer NullHandler(Command com)
+        private static ServerResponse AddHandler(Command com)
         {
-            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());
+            ServerResponse answer = new(DatabaseManager.AddRecord(com.FirstName, com.SecondName),
+                DatabaseManager.GetTable());
             return answer;
         }
 
-        private static ServerAnswer AddHandler(Command com)
+        private static ServerResponse RemoveHandler(Command com)
         {
-            ServerAnswer answer = new(DatabaseManager.AddRecord(com.FirstName, com.SecondName),
-                DatabaseManager.GetGrid());
+            ServerResponse answer = new(DatabaseManager.RemoveRecord(com.Id),
+                DatabaseManager.GetTable());
             return answer;
         }
 
-        private static ServerAnswer RemoveHandler(Command com)
+        private static ServerResponse EditHandler(Command com)
         {
-            ServerAnswer answer = new(DatabaseManager.RemoveRecord(com.Id),
-                DatabaseManager.GetGrid());
+            ServerResponse answer = new(DatabaseManager.EditRecord(com.Id, com.FirstName, com.SecondName),
+                DatabaseManager.GetTable());
             return answer;
         }
 
-        private static ServerAnswer EditHandler(Command com)
+        private static ServerResponse RefreshHandler(Command com)
         {
-            ServerAnswer answer = new(DatabaseManager.EditRecord(com.Id, com.FirstName, com.SecondName),
-                DatabaseManager.GetGrid());
+            ServerResponse answer = new(ErrorType.None, DatabaseManager.GetTable());
             return answer;
         }
 
-        private static ServerAnswer RefreshHandler(Command com)
+        private static ServerResponse IncorrectInputHandler(Command com)
         {
-            ServerAnswer answer = new(ErrorType.None, DatabaseManager.GetGrid());
-            return answer;
-        }
-
-        private static ServerAnswer IncorrectInputHandler(Command com)
-        {
-            ServerAnswer answer = new(ErrorType.InvalidQuery, DatabaseManager.GetGrid());
+            ServerResponse answer = new(ErrorType.InvalidQuery, DatabaseManager.GetTable());
             return answer;
         }
     }

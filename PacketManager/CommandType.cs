@@ -2,7 +2,6 @@
 {
     public enum CommandType
     {
-        None,
         Add,
         Remove,
         Edit,

@@ -7,9 +7,9 @@ namespace NamesControlClient
 {
     internal static class GuiEventHandler
     {
-        private static ServerAnswer ProcessCommand(Command command)
+        private static ServerResponse ProcessCommand(Command command)
         {
-            ServerAnswer answer = new(ErrorType.None, null);
+            ServerResponse answer = new(ErrorType.None, null);
 
             try
             {
@@ -23,7 +23,7 @@ namespace NamesControlClient
 
                 _ = stream.Read(recievedMessage);
 
-                answer = SocketManager.SocketToMessage<ServerAnswer>(recievedMessage);
+                answer = SocketManager.SocketToMessage<ServerResponse>(recievedMessage);
 
                 stream.Dispose();
                 client.Close();
@@ -37,25 +37,25 @@ namespace NamesControlClient
             return answer;
         }
 
-        public static ServerAnswer AddNewNameHandler(string fstName, string sndName)
+        public static ServerResponse AddNewNameHandler(string fstName, string sndName)
         {
             Command com = new(CommandType.Add, fstName, sndName);
             return ProcessCommand(com);
         }
 
-        public static ServerAnswer EditNameHandler(int id, string fstName, string sndName)
+        public static ServerResponse EditNameHandler(int id, string fstName, string sndName)
         {
             Command com = new(CommandType.Edit, fstName, sndName, id);
             return ProcessCommand(com);
         }
 
-        public static ServerAnswer RemoveNameHandler(int id)
+        public static ServerResponse RemoveNameHandler(int id)
         {
             Command com = new(CommandType.Remove, id: id);
             return ProcessCommand(com);
         }
 
-        public static ServerAnswer RefreshHandler()
+        public static ServerResponse RefreshHandler()
         {
             Command com = new(CommandType.Refresh);
             return ProcessCommand(com);

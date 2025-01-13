@@ -5,8 +5,8 @@ using System.ComponentModel;
 
 namespace NamesControlClient
 {
-    using Table = List<DatabaseRaw>;
-    using BindedTable = BindingList<DatabaseRaw>;
+    using Table = List<NamesTableRow>;
+    using BindedTable = BindingList<NamesTableRow>;
     public partial class NCForm : Form
     {
         public NCForm()
@@ -53,7 +53,7 @@ namespace NamesControlClient
         {
             int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
 
-            ServerAnswer answer = GuiEventHandler.RemoveNameHandler(selectedId);
+            ServerResponse answer = GuiEventHandler.RemoveNameHandler(selectedId);
 
             ErrorType error = answer.ErrorType;
             if (error == ErrorType.RecordNotExist)
@@ -85,7 +85,7 @@ namespace NamesControlClient
 
         private void FefreshTableBut_Click(object sender, EventArgs e)
         {
-            ServerAnswer answer = GuiEventHandler.RefreshHandler();
+            ServerResponse answer = GuiEventHandler.RefreshHandler();
             BindAndUpdateTable(answer.Grid);
         }
 

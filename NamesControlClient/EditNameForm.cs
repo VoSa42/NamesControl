@@ -33,7 +33,7 @@ namespace NamesControlClient
 
         private void EditNameConfirm_Click(object sender, EventArgs e)
         {
-            ServerAnswer answer = GuiEventHandler.EditNameHandler(Id, FstName, SndName);
+            ServerResponse answer = GuiEventHandler.EditNameHandler(Id, FstName, SndName);
             
             ErrorType error = answer.ErrorType;
 

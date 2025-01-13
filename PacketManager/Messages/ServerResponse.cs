@@ -2,10 +2,10 @@
 
 namespace NamesControlLib.Messages
 {
-    public class ServerAnswer(ErrorType errorType, List<DatabaseRaw>? grid) : Message
+    public class ServerResponse(ErrorType errorType, List<NamesTableRow>? grid) : Message
     {
         public ErrorType ErrorType { get; set; } = errorType;
-        public List<DatabaseRaw>? Grid { get; set; } = grid;
+        public List<NamesTableRow>? Grid { get; set; } = grid;
 
         public override string ToString()
         {
@@ -24,8 +24,8 @@ namespace NamesControlLib.Messages
                 if (row.SecondName.Length > cellSize) { cellSize = row.SecondName.Length; }
             }
 
-            Console.WriteLine(String.Format($"{{0,6}} | {{1,{Math.Abs(cellSize)}}} | {{2,{Math.Abs(cellSize)}}}\n",
-                "ID", "First Name", "Second Name"));
+            result += String.Format($"{{0,6}} | {{1,{Math.Abs(cellSize)}}} | {{2,{Math.Abs(cellSize)}}}\n",
+                "ID", "First Name", "Second Name");
 
             foreach (var row in Grid)
             {

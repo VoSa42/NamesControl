@@ -26,9 +26,9 @@ namespace NamesControlServer.ServerBackend
                 // Reads the byte stream from sender and store them into buffer
                 _ = await sender.GetStream().ReadAsync(buffer);
 
-                ServerAnswer answer = CommandHandler.ExecuteCommand(buffer);
+                ServerResponse answer = CommandHandler.ExecuteCommand(buffer);
 
-                byte[] answerSocket = SocketManager.MessageToSocket<ServerAnswer>(answer);
+                byte[] answerSocket = SocketManager.MessageToSocket<ServerResponse>(answer);
                 await sender.GetStream().WriteAsync(answerSocket);
             }
         }

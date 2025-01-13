@@ -4,8 +4,8 @@ using NamesControlLib;
 
 namespace NamesControlClient
 {
-    public class DataGrid(BindingList<DatabaseRaw> grid)
+    public class DataGrid(BindingList<NamesTableRow> grid)
     {
-        public BindingList<DatabaseRaw> Grid { get; set; } = grid;
+        public BindingList<NamesTableRow> Grid { get; set; } = grid;
     }
 }
