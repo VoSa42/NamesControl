@@ -47,7 +47,7 @@ namespace NamesControlClient
             ErrorType error = answer.ErrorType;
             if (error == ErrorType.RecordNotExist)
             {
-                MessageBox.Show(ErrorMessages.GetErrorMessage(error), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorDialog errorDialog = new(ErrorMessages.GetErrorMessage(answer.ErrorType));
             }
 
             DialogResult = DialogResult.OK;

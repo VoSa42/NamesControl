@@ -13,15 +13,15 @@ namespace NamesControlLib.Messages
 {
     public class ServerAnswer(ErrorType errorType, List<DatabaseRaw>? grid) : Message
     {
-        public ErrorType ErrorType { get; set; } = ErrorType.None;
+        public ErrorType ErrorType { get; set; } = errorType;
         public List<DatabaseRaw>? Grid { get; set; } = grid;
 
         public override string ToString()
         {
             string result = "";
-            if (errorType != ErrorType.None)
+            if (ErrorType != ErrorType.None)
             {
-                result += $"Error: {errorType}\n";
+                result += $"Error: {ErrorType}\n";
             }
 
             if (Grid == null) { return result; }
