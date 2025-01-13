@@ -1,5 +1,8 @@
 ﻿namespace NamesControlLib.Messages
 {
+    /// <summary>
+    /// Represents command as commands type and its attributes.
+    /// </summary>
     public class Command(CommandType commandName,
         string firstName = "",
         string secondName = "",

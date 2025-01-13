@@ -5,8 +5,18 @@ using NamesControlLib.Messages;
 
 namespace NamesControlClient
 {
+    /// <summary>
+    /// Handle events from GUI (WinForms) and realize network communication with server.
+    /// </summary>
     internal static class GuiEventHandler
     {
+        /// <summary>
+        /// Gets command from event handlers below, process them into queries for database,
+        /// encode them and send to the server.
+        /// After server process the query, this method recieve servers answer.
+        /// </summary>
+        /// <param name="command"> Request to a database </param>
+        /// <returns> Server answer </returns>
         private static ServerResponse ProcessCommand(Command command)
         {
             ServerResponse answer = new(ErrorType.None, null);
@@ -37,6 +47,9 @@ namespace NamesControlClient
             return answer;
         }
 
+        /// <summary>
+        /// GUI event hendler below
+        /// </summary>
         public static ServerResponse AddNewNameHandler(string fstName, string sndName)
         {
             Command com = new(CommandType.Add, fstName, sndName);

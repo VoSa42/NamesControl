@@ -2,6 +2,11 @@
 
 namespace NamesControlLib.Messages
 {
+    /// <summary>
+    /// Represents responding message from server to client.
+    /// </summary>
+    /// <param name="errorType"> Error type to handle it on the client side </param>
+    /// <param name="grid"> Full updated table </param>
     public class ServerResponse(ErrorType errorType, List<NamesTableRow>? grid) : Message
     {
         public ErrorType ErrorType { get; set; } = errorType;

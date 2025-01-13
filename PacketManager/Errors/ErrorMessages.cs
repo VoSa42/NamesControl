@@ -2,6 +2,9 @@
 {
     using ErrorList = List<Tuple<ErrorType, string?>>;
 
+    /// <summary>
+    /// Handle error messages (string) based on message types.
+    /// </summary>
     public static class ErrorMessages
     {
         private static ErrorList EList { get; } = [
@@ -11,6 +14,9 @@
             new(ErrorType.InvalidQuery, ErrorType.InvalidQuery.ToString() + ": SQL query was incorrect."),
             ];
 
+        /// <summary>
+        /// Gets error message (string) from ErrorType
+        /// </summary>
         public static string? GetErrorMessage(ErrorType errorType)
         {
             foreach (var error in EList)

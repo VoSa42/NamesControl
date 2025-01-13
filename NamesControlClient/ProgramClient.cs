@@ -1,15 +1,16 @@
 namespace NamesControlClient
 {
+    /// <summary>
+    /// Main client program.
+    /// </summary>
     internal static class ProgramClient
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// The main entry point for the client application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new NCForm());
         }

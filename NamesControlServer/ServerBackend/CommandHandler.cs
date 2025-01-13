@@ -5,10 +5,21 @@ using NamesControlServer.Database;
 
 namespace NamesControlServer.ServerBackend
 {
+    /// <summary>
+    /// Represents reference to adequate command handler menthod which will be calld
+    /// </summary>
     internal delegate ServerResponse CommandHandlerFunc(Command com);
 
+    /// <summary>
+    /// Represents server application layer.
+    /// </summary>
     internal class CommandHandler
     {
+        /// <summary>
+        /// Executes adequate command.
+        /// </summary>
+        /// <param name="buffer"> Socket recieved from network. </param>
+        /// <returns> Full answer including the error message. </returns>
         public static ServerResponse ExecuteCommand(byte[] buffer)
         {
             Command com = SocketManager.SocketToMessage<Command>(buffer);
@@ -25,6 +36,9 @@ namespace NamesControlServer.ServerBackend
             return comHandler(com);
         }
 
+        /// <summary>
+        /// Command handlers below.
+        /// </summary>
         private static ServerResponse AddHandler(Command com)
         {
             ServerResponse answer = new(DatabaseManager.AddRecord(com.FirstName, com.SecondName),

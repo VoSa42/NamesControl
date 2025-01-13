@@ -3,6 +3,9 @@ using NamesControlLib.Messages;
 
 namespace NamesControlClient
 {
+    /// <summary>
+    /// Dialog window to realize editing selected name in database.
+    /// </summary>
     public partial class EditNameForm : Form
     {
         private string FstName { get; set; } = string.Empty;
@@ -31,6 +34,9 @@ namespace NamesControlClient
             SndName = FillSndName.Text;
         }
 
+        /// <summary>
+        /// Provides the 'edit name' process
+        /// </summary>
         private void EditNameConfirm_Click(object sender, EventArgs e)
         {
             ServerResponse answer = GuiEventHandler.EditNameHandler(Id, FstName, SndName);

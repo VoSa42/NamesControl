@@ -1,8 +1,10 @@
-﻿using System.Configuration;
-using System.Net;
+﻿using System.Net;
 
 namespace NamesControlLib
 {
+    /// <summary>
+    /// Provides configured metadata of server.
+    /// </summary>
     public static class ServerMetadata
     {
         public static IPAddress ServerIPAddress { get { return IPAddress.Loopback; } }

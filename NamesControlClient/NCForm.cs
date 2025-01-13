@@ -7,25 +7,43 @@ namespace NamesControlClient
 {
     using Table = List<NamesTableRow>;
     using BindedTable = BindingList<NamesTableRow>;
+
+    /// <summary>
+    /// Main window.
+    /// This form implicitly shows after client application starts.
+    /// All the control logic starts in this class.
+    /// </summary>
     public partial class NCForm : Form
     {
+        /// <summary>
+        /// Primary initializing.
+        /// </summary>
         public NCForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Load and update table (DataGridView).
+        /// </summary>
         private void RefreshTable()
         {
             Table? table = LoadTable();
             BindAndUpdateTable(table);
         }
 
+        /// <summary>
+        /// Loads current state of table from remote database.
+        /// </summary>
         private static Table? LoadTable()
         {
             Table? table = GuiEventHandler.RefreshHandler().Grid;
             return table;
         }
 
+        /// <summary>
+        /// Can bind and show the fresh state of table.
+        /// </summary>
         private void BindAndUpdateTable(Table? table)
         {
             if (table != null)
@@ -35,6 +53,9 @@ namespace NamesControlClient
             }
         }
 
+        /// <summary>
+        /// Shows dialog window with 'add name' options.
+        /// </summary>
         private void AddBut_Click(object sender, EventArgs e)
         {
             var addNewF = new AddNewNameForm();
@@ -49,6 +70,9 @@ namespace NamesControlClient
             RefreshTable();
         }
 
+        /// <summary>
+        /// Removes currently selected name from table
+        /// </summary>
         private void RemoveBut_Click(object sender, EventArgs e)
         {
             int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
@@ -65,6 +89,10 @@ namespace NamesControlClient
             BindAndUpdateTable(answer.Grid);
         }
 
+        /// <summary>
+        /// Shows dialog window with 'edit name' options.
+        /// Only currently selected name from DataGriView is edited
+        /// </summary>
         private void EditBut_Click(object sender, EventArgs e)
         {
             int selectedId = (int)NamesDataGridView.CurrentRow.Cells[0].Value;
@@ -83,6 +111,9 @@ namespace NamesControlClient
             RefreshTable();
         }
 
+        /// <summary>
+        /// Refresh DataGridView
+        /// </summary>
         private void FefreshTableBut_Click(object sender, EventArgs e)
         {
             ServerResponse answer = GuiEventHandler.RefreshHandler();

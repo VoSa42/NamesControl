@@ -6,8 +6,14 @@ using NamesControlLib.Messages;
 
 namespace NamesControlServer.ServerBackend
 {
+    /// <summary>
+    /// Represents server network comunication layer.
+    /// </summary>
     internal static class RunServer
     {
+        /// <summary>
+        /// Set up a listener, after is able to recieve queries asynchroniously.
+        /// </summary>
         public static async Task Run()
         {
             // Set up and activate listener to wait and recieving message from client

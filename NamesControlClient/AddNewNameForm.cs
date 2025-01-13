@@ -1,5 +1,8 @@
 ﻿namespace NamesControlClient
 {
+    /// <summary>
+    /// Dialog window to realize adding new name to database.
+    /// </summary>
     public partial class AddNewNameForm : Form
     {
         private string FstName = string.Empty;

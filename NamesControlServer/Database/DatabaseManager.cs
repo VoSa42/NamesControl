@@ -6,13 +6,21 @@ using NamesControlLib.Errors;
 
 namespace NamesControlServer.Database
 {
+    /// <summary>
+    /// Represents database layer.
+    /// Implements communication with database.
+    /// </summary>
     internal static class DatabaseManager
     {
-        private static string? GetThisFilePath([CallerFilePath] string? path = null)
-        {
-            return path;
-        }
+        /// <summary>
+        /// Auxiliary methodd
+        /// </summary>
+        private static string? GetThisFilePath([CallerFilePath] string? path = null) { return path; }
 
+        /// <summary>
+        /// Set and oppen connection to database.
+        /// </summary>
+        /// <returns> Opened connection. </returns>
         private static SqlConnection OpenConnection()
         {
             string? path = GetThisFilePath();
@@ -32,11 +40,20 @@ namespace NamesControlServer.Database
             return connection;
         }
 
+        /// <summary>
+        /// Closes opened connection.
+        /// </summary>
+        /// <param name="connection"> connection to be clossed </param>
         private static void CloseConnection(SqlConnection connection)
         {
             connection.Close();
         }
 
+        /// <summary>
+        /// Process the whole query in database.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         private static int RunQuery(string query)
         {
             SqlConnection connection = OpenConnection();
@@ -51,6 +68,9 @@ namespace NamesControlServer.Database
             return recordsAffected;
         }
 
+        /// <summary>
+        /// Realization of adding queries. 
+        /// </summary>
         public static ErrorType AddRecord(string firstName, string secondName)
         {
             string query =
@@ -60,6 +80,9 @@ namespace NamesControlServer.Database
             return ErrorType.None;
         }
 
+        /// <summary>
+        /// Realization of removing Record.
+        /// </summary>
         public static ErrorType RemoveRecord(int id)
         {
             string query =
@@ -74,6 +97,9 @@ namespace NamesControlServer.Database
             return ErrorType.None;
         }
 
+        /// <summary>
+        /// Realization of Editing record.
+        /// </summary>
         public static ErrorType EditRecord(int id, string newFstName, string newSndName)
         {
             string query =
@@ -92,6 +118,10 @@ namespace NamesControlServer.Database
         /** The query maybe should be ran using the RunQuery method.
          * The problem is return value, this method needs specific one
          */
+        /// <summary>
+        /// Gets the current state of table.
+        /// </summary>
+        /// <returns></returns>
         public static List<NamesTableRow> GetTable()
         {
             SqlConnection connection = OpenConnection();
