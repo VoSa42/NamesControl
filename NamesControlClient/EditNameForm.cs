@@ -1,14 +1,5 @@
 ﻿using NamesControlLib.Errors;
 using NamesControlLib.Messages;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NamesControlClient
 {
@@ -45,14 +36,15 @@ namespace NamesControlClient
             ServerAnswer answer = GuiEventHandler.EditNameHandler(Id, FstName, SndName);
             
             ErrorType error = answer.ErrorType;
-            if (error == ErrorType.RecordNotExist)
-            {
-                ErrorDialog errorDialog = new(ErrorMessages.GetErrorMessage(error));
-                ShowDialog(errorDialog);
-            }
 
             DialogResult = DialogResult.OK;
             Close();
+
+            if (error == ErrorType.RecordNotExist)
+            {
+                ErrorDialog errorDialog = new(ErrorMessages.GetErrorMessage(error));
+                errorDialog.ShowDialog();
+            }
         }
 
         private void CancelBut_Click(object sender, EventArgs e)

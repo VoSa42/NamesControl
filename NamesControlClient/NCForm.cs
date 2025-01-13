@@ -16,13 +16,13 @@ namespace NamesControlClient
 
         private void RefreshTable()
         {
-            Table table = LoadTable();
+            Table? table = LoadTable();
             BindAndUpdateTable(table);
         }
 
         private static Table? LoadTable()
         {
-            Table table = GuiEventHandler.RefreshHandler().Grid;
+            Table? table = GuiEventHandler.RefreshHandler().Grid;
             return table;
         }
 
