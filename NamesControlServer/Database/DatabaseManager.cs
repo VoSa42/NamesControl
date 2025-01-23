@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 
 using NamesControlLib;
 using NamesControlLib.Errors;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NamesControlServer.Database
 {
@@ -13,28 +14,25 @@ namespace NamesControlServer.Database
     internal static class DatabaseManager
     {
         /// <summary>
-        /// Auxiliary methodd
-        /// </summary>
-        private static string? GetThisFilePath([CallerFilePath] string? path = null) { return path; }
-
-        /// <summary>
         /// Set and oppen connection to database.
         /// </summary>
         /// <returns> Opened connection. </returns>
         private static SqlConnection OpenConnection()
         {
-            string? path = GetThisFilePath();
-            string? directory = Path.GetDirectoryName(path);
+            // Relative path from executable file to database
+            string relativePath = @"..\..\..\Database\NamesDat.mdf";
+            // Makes absolute path from relative path for current machine (filesystem)
+            string absolutePath = Path.GetFullPath(relativePath);
 
             SqlConnectionStringBuilder conStringBuilder = new()
             {
                 DataSource = @"(LocalDB)\MSSQLLocalDB",
-                InitialCatalog = $"{directory}\\NamesDat.mdf",
+                InitialCatalog = absolutePath,
                 IntegratedSecurity = true,
                 ConnectTimeout = 30
             };
-            SqlConnection connection = new(conStringBuilder.ConnectionString);
 
+            SqlConnection connection = new(conStringBuilder.ConnectionString);
             connection.Open();
 
             return connection;
